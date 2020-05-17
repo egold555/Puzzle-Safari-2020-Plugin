@@ -1,0 +1,27 @@
+name: PuzzleSafari2020
+author: Eric Golde
+main: org.golde.puzzlesafari.Main
+version: 1.0.0
+commands:
+   test:
+      description: Test
+      usage: /test
+   ping:
+      description: What is my ping?
+      usage: /ping <player>
+  
+   warp:
+      description: warp to a specific warp
+      usage: /warp <name> [player]
+      
+   warps:
+      description: List all the warps
+      usage: /warps
+      
+   setwarp:
+      description: Set a warp
+      usage: /setwarp <name>
+      
+   delwarp:
+      description: Delete a warp
+      usage: /delwarp <name>
