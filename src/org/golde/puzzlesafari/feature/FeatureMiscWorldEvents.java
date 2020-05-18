@@ -3,12 +3,16 @@ package org.golde.puzzlesafari.feature;
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockFadeEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.golde.puzzlesafari.Main;
@@ -70,7 +74,13 @@ public class FeatureMiscWorldEvents extends FeatureBase {
 		}.runTaskTimer(Main.getInstance(), 0, 20 * 5);
 	}
 
-	//Warp Signs
+	//Can't take off armor
+	@EventHandler
+    public void onClick(InventoryClickEvent event) {
+        if(event.getSlotType() == InventoryType.SlotType.ARMOR && event.getWhoClicked().getGameMode() != GameMode.CREATIVE) {
+            event.setCancelled(true);
+        }
+    }
 	
 	
 	private static String format(final double tps) {

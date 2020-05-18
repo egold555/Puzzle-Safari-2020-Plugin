@@ -1,18 +1,16 @@
-package org.golde.puzzlesafari.feature.parkour;
+package org.golde.puzzlesafari.feature;
 
 import org.bukkit.Location;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Guardian;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.golde.puzzlesafari.feature.FeatureBase;
 import org.golde.puzzlesafari.utils.Cuboid;
 import org.golde.puzzlesafari.utils.MobCuboid;
-import org.golde.puzzlesafari.utils.NMSUtils;
 
 public class FeatureParkour extends FeatureBase {
 
@@ -23,8 +21,6 @@ public class FeatureParkour extends FeatureBase {
 	@Override
 	public void onEnable() {
 		
-		//register custom entity
-		NMSUtils.registerEntity("custom_guardian", NMSUtils.Type.GUARDIAN, EntityCustomGuardian.class, false);
 		
 		health = new Cuboid(new Location(getWorld(), 134, 10, 56), new Location(getWorld(), 134, 11, 62));
 		checkpoint = new Cuboid(new Location(getWorld(), 113, 4, 32), new Location(getWorld(), 118, 24, 86));
@@ -38,13 +34,10 @@ public class FeatureParkour extends FeatureBase {
 			@Override
 			public void run() {
 				if(guardians.getEntitiesInCuboid(Guardian.class).size() < 50) {
-//					Guardian guardian = (Guardian) getWorld().spawnEntity(guardians.getRandomGuardianSpawn(), EntityType.GUARDIAN);
-//					guardian.setSilent(true);
-					//EnumCustomMobs.spawnEntity(new EntityCustomGuardian(getWorld()), guardians.getRandomGuardianSpawn());
-					EntityCustomGuardian entity = new EntityCustomGuardian(getWorld());
-					Location spawnLoc = guardians.getRandomGuardianSpawn();
-					entity.setPosition(spawnLoc.getX(), spawnLoc.getY(), spawnLoc.getZ());
-					entity.world.addEntity(entity, SpawnReason.CUSTOM);
+					Guardian guardian = (Guardian) getWorld().spawnEntity(guardians.getRandomGuardianSpawn(), EntityType.GUARDIAN);
+					guardian.setSilent(true);
+					guardian.setMaximumAir(Integer.MAX_VALUE);
+					guardian.setRemainingAir(Integer.MAX_VALUE);
 				}
 			}
 		}.runTaskTimer(getPlugin(), 0, 5);
@@ -59,7 +52,7 @@ public class FeatureParkour extends FeatureBase {
 	public void onMove(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
 		if(health.inArea(p.getLocation())) {
-			p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20, 10));
+			p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20, 10, true));
 		}
 		
 		if(checkpoint.inArea(p.getLocation())) {
