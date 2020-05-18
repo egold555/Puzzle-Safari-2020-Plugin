@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.golde.puzzlesafari.cmds.CommandPing;
 import org.golde.puzzlesafari.cmds.CommandTest;
@@ -12,8 +13,11 @@ import org.golde.puzzlesafari.cmds.admin.warp.CommandListWarps;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandSetWarp;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandWarp;
 import org.golde.puzzlesafari.feature.FeatureMiscWorldEvents;
-import org.golde.puzzlesafari.feature.FeatureSlimeJump;
-import org.golde.puzzlesafari.feature.zombie.FeatureZombieKill;
+import org.golde.puzzlesafari.feature.FeatureMouseMaze;
+import org.golde.puzzlesafari.feature.FeatureSignManager;
+import org.golde.puzzlesafari.feature.FeatureSpawn;
+import org.golde.puzzlesafari.feature.FeatureZombieKill;
+import org.golde.puzzlesafari.feature.parkour.FeatureParkour;
 import org.golde.puzzlesafari.feature.FeatureBase;
 
 public class Main extends JavaPlugin {
@@ -25,8 +29,11 @@ public class Main extends JavaPlugin {
 	@Override
 	public void onLoad() {
 		features.add(new FeatureMiscWorldEvents());
-		features.add(new FeatureSlimeJump());
+		features.add(new FeatureMouseMaze());
 		features.add(new FeatureZombieKill());
+		features.add(new FeatureSignManager());
+		features.add(new FeatureSpawn());
+		features.add(new FeatureParkour());
 	}
 
 	@Override
@@ -42,7 +49,21 @@ public class Main extends JavaPlugin {
 		getCommand("delwarp").setExecutor(new CommandDeleteWarp());
 		
 		for(FeatureBase fbp : features) {
-			fbp.onEnable();
+			fbp.onInternalEnable();
+		}
+		
+	}
+	
+	public void callFeatureEnterFunction(Player p, String name) {
+		
+		if(name == null) {
+			return;
+		}
+		
+		for(FeatureBase fb : features) {
+			if(fb.getWarpTrigger() != null && fb.getWarpTrigger().equalsIgnoreCase(name)) {
+				fb.onEnter(p);
+			}
 		}
 		
 	}

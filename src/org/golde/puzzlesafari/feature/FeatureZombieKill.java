@@ -1,21 +1,24 @@
-package org.golde.puzzlesafari.feature.zombie;
+package org.golde.puzzlesafari.feature;
 
-import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityCombustEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.golde.puzzlesafari.feature.FeatureBase;
 import org.golde.puzzlesafari.utils.Cuboid;
+import org.golde.puzzlesafari.utils.MobCuboid;
 
 public class FeatureZombieKill extends FeatureBase {
 
-	private ZombieCuboid cuboid;
+	private MobCuboid cuboid;
 	private Cuboid zombieKillCuboid;
 	
 	private static final int SPAWN_TICKS = 5;
@@ -25,20 +28,41 @@ public class FeatureZombieKill extends FeatureBase {
 	@Override
 	public void onEnable() {
 
-		registerEvents();
+		Location loc1 = new Location(getWorld(), 82, 4, -80);
+		Location loc2 = new Location(getWorld(), 230, 4, -209);
+		cuboid = new MobCuboid(loc1, loc2);
 
-		Location loc1 = new Location(Bukkit.getWorld("world"), 82, 4, -80);
-		Location loc2 = new Location(Bukkit.getWorld("world"), 230, 4, -209);
-		cuboid = new ZombieCuboid(loc1, loc2);
-
-		loc1 = new Location(Bukkit.getWorld("world"), 197, 11, -127);
-		loc2 = new Location(Bukkit.getWorld("world"), 197, 9, -125);
+		loc1 = new Location(getWorld(), 197, 11, -127);
+		loc2 = new Location(getWorld(), 197, 9, -125);
 		zombieKillCuboid = new Cuboid(loc1, loc2);
 		
 		
 		startTimers();
 	}
+	
+	@Override
+	public String getWarpTrigger() {
+		return "zombie";
+	}
 
+	@Override
+	public void onEnter(Player p) {
+		p.setPlayerTime(20000, false);
+		
+		PlayerInventory inv = p.getInventory();
+		
+		ItemStack is = new ItemStack(Material.IRON_SWORD);
+		ItemMeta im = is.getItemMeta();
+		im.setUnbreakable(true);
+		im.setDisplayName(ChatColor.YELLOW + "Zombie Slasher");
+		is.setItemMeta(im);
+		
+		inv.setItemInMainHand(is);
+		
+		p.updateInventory();
+		
+	}
+	
 	private void startTimers() {
 
 		//spawn zombies every 5 ticks or .2 seconds
@@ -82,19 +106,6 @@ public class FeatureZombieKill extends FeatureBase {
 		}.runTaskTimer(getPlugin(), 0, CLEAR_TICKS);
 
 	}
-
-	@EventHandler
-	public void onPlayerMove(PlayerMoveEvent e) {
-		Player p = e.getPlayer();
-		if(cuboid.inArea(p.getLocation())) {
-			p.setPlayerTime(20000, false);
-		}
-		else if(!cuboid.inArea(p.getLocation())) {
-			p.resetPlayerTime();
-		}
-	}
-
-
 
 	private void spawnAZombie() {
 
