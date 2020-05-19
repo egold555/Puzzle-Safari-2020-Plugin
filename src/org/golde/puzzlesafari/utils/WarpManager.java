@@ -54,14 +54,14 @@ public class WarpManager {
 		}
 
 		p.teleport(getWarp(warpName));
-		p.playSound(p.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 1.0f, 0.0f);
+		//p.playSound(p.getLocation(), Sound.ENTITY_ENDERMEN_TELEPORT, 1.0f, 0.0f);
 		
-		if(sender != null) {
-			p.sendMessage(Main.getInstance().color("&6" + sender.getName() + " &7teleported you to &6" + warpName));
-		}
-		else {
-			p.sendMessage(Main.getInstance().color("&7you have been teleported to &6" + warpName));
-		}
+//		if(sender != null) {
+//			p.sendMessage(Main.getInstance().color("&6" + sender.getName() + " &7teleported you to &6" + warpName));
+//		}
+//		else {
+//			p.sendMessage(Main.getInstance().color("&7you have been teleported to &6" + warpName));
+//		}
 		
 		Main.getInstance().callFeatureEnterFunction(p, warpName);
 		

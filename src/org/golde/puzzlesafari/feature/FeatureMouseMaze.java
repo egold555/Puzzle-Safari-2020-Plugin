@@ -3,9 +3,11 @@ package org.golde.puzzlesafari.feature;
 import java.lang.reflect.Field;
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,6 +20,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.golde.puzzlesafari.utils.ChatUtil;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
@@ -67,12 +70,27 @@ public class FeatureMouseMaze extends FeatureBase {
 		pinv.setHelmet(helmet);
 		
 		p.updateInventory();
+		
+		p.playSound(p.getLocation(), Sound.ENTITY_ITEM_PICKUP, 0.8f, 1.0f);
+		ChatUtil.sendCentredMessage(p, "&c&m" + StringUtils.repeat(" ", 80));
+		
+		ChatUtil.sendCentredMessage(p, "&e&lLab Rat");
+		p.sendMessage("");
+		ChatUtil.sendCentredMessage(p, "You are a rat involuntary participating in a drug test.");
+		ChatUtil.sendCentredMessage(p, "&6Your goal: To find the cheese");
+		p.sendMessage("");
+		ChatUtil.sendCentredMessage(p, "Use &bWASD&f to move, &bSpace&f to jump.");
+		ChatUtil.sendCentredMessage(p, "&aGreen &fblocks make you jump higher.");
+		
+		ChatUtil.sendCentredMessage(p, "&c&m" + StringUtils.repeat(" ", 80));
+	
+		
 	}
 
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
-		if(p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.EMERALD_BLOCK && p.getLocation().subtract(0, 1, 0).getBlock().getRelative(BlockFace.DOWN).getType() == Material.STAINED_GLASS) {
+		if(p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.CONCRETE && p.getLocation().subtract(0, 1, 0).getBlock().getRelative(BlockFace.DOWN).getType() == Material.STAINED_GLASS) {
 			p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20*2, 11, true), true);
 		}
 	}
