@@ -48,6 +48,16 @@ public class FeatureParkour extends FeatureBase {
 		return "parkour";
 	}
 	
+	@Override
+	public void onEnter(Player p) {
+		sendEnterMessage(
+				p, 
+				"Parkour",
+				"It's just a hop skip and a jump away!", 
+				"To get to the exit."
+				);
+	}
+	
 	@EventHandler
 	public void onMove(PlayerMoveEvent e) {
 		Player p = e.getPlayer();

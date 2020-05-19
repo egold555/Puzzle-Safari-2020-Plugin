@@ -29,7 +29,7 @@ public class FeatureMouseMaze extends FeatureBase {
 
 	@Override
 	public String getWarpTrigger() {
-		return "mouse";
+		return "lab-rat";
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class FeatureMouseMaze extends FeatureBase {
 
 		ItemStack helmet = getCustomTextureHead("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYzExZGMzNGM2YzMzZWQ1YzJlOTc1ZjU4YWJiNDVkNWRiZWEzZDUxMzM1YjllZmRmZDIzZGU0ZjVkNWJhOGQ2MCJ9fX0=");
 		ItemMeta helmetMeta = helmet.getItemMeta();
-		helmetMeta.setDisplayName(ChatColor.GRAY + "Mouse Disguise");
+		helmetMeta.setDisplayName(ChatColor.GRAY + "Rat Disguise");
 		helmet.setItemMeta(helmetMeta);
 		
 		Color color = Color.SILVER;
@@ -46,19 +46,22 @@ public class FeatureMouseMaze extends FeatureBase {
 		ItemStack chestplate = new ItemStack(Material.LEATHER_CHESTPLATE);
 		LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) chestplate.getItemMeta();
 		chestplateMeta.setColor(color);
-		chestplateMeta.setDisplayName(ChatColor.GRAY + "Mouse Disguise");
+		chestplateMeta.setUnbreakable(true);
+		chestplateMeta.setDisplayName(ChatColor.GRAY + "Rat Disguise");
 		chestplate.setItemMeta(chestplateMeta);
 		
 		ItemStack leggings = new ItemStack(Material.LEATHER_LEGGINGS);
 		LeatherArmorMeta leggingsMeta = (LeatherArmorMeta) leggings.getItemMeta();
 		leggingsMeta.setColor(color);
-		leggingsMeta.setDisplayName(ChatColor.GRAY + "Mouse Disguise");
+		leggingsMeta.setUnbreakable(true);
+		leggingsMeta.setDisplayName(ChatColor.GRAY + "Rat Disguise");
 		leggings.setItemMeta(leggingsMeta);
 		
 		ItemStack boots = new ItemStack(Material.LEATHER_BOOTS);
 		LeatherArmorMeta bootsMeta = (LeatherArmorMeta) boots.getItemMeta();
 		bootsMeta.setColor(color);
-		bootsMeta.setDisplayName(ChatColor.GRAY + "Mouse Disguise");
+		bootsMeta.setUnbreakable(true);
+		bootsMeta.setDisplayName(ChatColor.GRAY + "Rat Disguise");
 		boots.setItemMeta(bootsMeta);
 		
 		
@@ -71,19 +74,13 @@ public class FeatureMouseMaze extends FeatureBase {
 		
 		p.updateInventory();
 		
-		p.playSound(p.getLocation(), Sound.ENTITY_ITEM_PICKUP, 0.8f, 1.0f);
-		ChatUtil.sendCentredMessage(p, "&c&m" + StringUtils.repeat(" ", 80));
-		
-		ChatUtil.sendCentredMessage(p, "&e&lLab Rat");
-		p.sendMessage("");
-		ChatUtil.sendCentredMessage(p, "You are a rat involuntary participating in a drug test.");
-		ChatUtil.sendCentredMessage(p, "&6Your goal: To find the cheese");
-		p.sendMessage("");
-		ChatUtil.sendCentredMessage(p, "Use &bWASD&f to move, &bSpace&f to jump.");
-		ChatUtil.sendCentredMessage(p, "&aGreen &fblocks make you jump higher.");
-		
-		ChatUtil.sendCentredMessage(p, "&c&m" + StringUtils.repeat(" ", 80));
-	
+		sendEnterMessage(
+				p, 
+				"Lab Rat",
+				"You are a rat involuntary participating in a drug test.", 
+				"To find the cheese.", 
+				"&aGreen &fblocks make you jump higher."
+				);
 		
 	}
 

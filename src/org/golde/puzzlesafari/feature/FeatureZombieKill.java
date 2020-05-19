@@ -7,8 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityCombustEvent;
+import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -60,6 +59,14 @@ public class FeatureZombieKill extends FeatureBase {
 		inv.setItemInMainHand(is);
 		
 		p.updateInventory();
+		
+		sendEnterMessage(
+				p, 
+				"Escape the Zombies",
+				"The zombies... are coming...", 
+				"Get to your house.", 
+				"&oZombies are one hit kill"
+				);
 		
 	}
 	
@@ -114,19 +121,21 @@ public class FeatureZombieKill extends FeatureBase {
 		zombie.setMaxHealth(3);
 		zombie.setHealth(zombie.getMaxHealth()); //seems to be an issue with hearts not being filled?
 		zombie.setBaby(false);
+		EntityEquipment ee = zombie.getEquipment();
+	    ee.setHelmet(new ItemStack(Material.STONE_BUTTON)); //mob burning fix
 	}
 
-	@EventHandler
-	public void onEntityCombust(EntityCombustEvent event){
-
-		Entity entity = event.getEntity();
-
-		if(entity instanceof Zombie){
-			if(cuboid.inArea(entity.getLocation()))
-				event.setCancelled(true);
-
-		}
-
-	} 
+//	@EventHandler
+//	public void onEntityCombust(EntityCombustEvent event){
+//
+//		Entity entity = event.getEntity();
+//
+//		if(entity instanceof Zombie){
+//			if(cuboid.inArea(entity.getLocation()))
+//				event.setCancelled(true);
+//
+//		}
+//
+//	} 
 
 }
