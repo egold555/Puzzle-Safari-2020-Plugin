@@ -7,7 +7,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -19,28 +18,11 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
 public class FeatureMouseMaze extends FeatureBase {
-	
-	@Override
-	public void onEnable() {
-		new BukkitRunnable() {
-
-			@Override
-			public void run() {
-//				for(Player p : Bukkit.getOnlinePlayers()) {
-//					if(p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.SLIME_BLOCK && p.getLocation().subtract(0, 1, 0).getBlock().getRelative(BlockFace.DOWN).getType() == Material.STAINED_GLASS) {
-//						p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20*2, 13, true), true);
-//					}
-//				}
-			}
-
-		}.runTaskTimer(getPlugin(), 0, 20);
-	}
 
 	@Override
 	public String getWarpTrigger() {
@@ -90,8 +72,8 @@ public class FeatureMouseMaze extends FeatureBase {
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
-		if(p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.SLIME_BLOCK && p.getLocation().subtract(0, 1, 0).getBlock().getRelative(BlockFace.DOWN).getType() == Material.STAINED_GLASS) {
-			p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20*2, 10, true), true);
+		if(p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.EMERALD_BLOCK && p.getLocation().subtract(0, 1, 0).getBlock().getRelative(BlockFace.DOWN).getType() == Material.STAINED_GLASS) {
+			p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20*2, 11, true), true);
 		}
 	}
 	

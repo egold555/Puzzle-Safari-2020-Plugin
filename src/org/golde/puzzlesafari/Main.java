@@ -13,13 +13,13 @@ import org.golde.puzzlesafari.cmds.admin.warp.CommandDeleteWarp;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandListWarps;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandSetWarp;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandWarp;
+import org.golde.puzzlesafari.feature.FeatureBase;
 import org.golde.puzzlesafari.feature.FeatureMiscWorldEvents;
 import org.golde.puzzlesafari.feature.FeatureMouseMaze;
 import org.golde.puzzlesafari.feature.FeatureParkour;
 import org.golde.puzzlesafari.feature.FeatureSignManager;
 import org.golde.puzzlesafari.feature.FeatureSpawn;
 import org.golde.puzzlesafari.feature.FeatureZombieKill;
-import org.golde.puzzlesafari.feature.FeatureBase;
 
 public class Main extends JavaPlugin {
 
@@ -36,6 +36,8 @@ public class Main extends JavaPlugin {
 		features.add(new FeatureSpawn());
 		features.add(new FeatureParkour());
 	}
+	
+	
 
 	@Override
 	public void onEnable() {
