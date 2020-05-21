@@ -8,9 +8,15 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockFadeEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.hanging.HangingBreakEvent;
+import org.bukkit.event.hanging.HangingBreakEvent.RemoveCause;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.weather.WeatherChangeEvent;
@@ -82,6 +88,42 @@ public class FeatureMiscWorldEvents extends FeatureBase {
         }
     }
 	
+	//Players can't damage eachother
+	@EventHandler
+	public void onEntityDamagedByEntity(EntityDamageByEntityEvent e) {
+		if(e.getDamager() instanceof Player && e.getEntity() instanceof Player) {
+			e.setCancelled(true);
+		}
+	}
+	
+	//No survival block breaking 4 u!
+	@EventHandler
+	public void onBlockBreak(BlockBreakEvent e) {
+		if(e.getPlayer().getGameMode() != GameMode.CREATIVE) {
+			e.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void onHangingEntityBreak(HangingBreakEvent e) {
+		if(e.getCause() != RemoveCause.ENTITY) {
+			e.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void onBlockPlace(BlockPlaceEvent e) {
+		if(e.getPlayer().getGameMode() != GameMode.CREATIVE) {
+			e.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void onEntityBrokenByEntity(HangingBreakByEntityEvent e) {
+		if(!(e.getRemover() instanceof Player && ((Player)e.getRemover()).getGameMode() == GameMode.CREATIVE)) {
+			e.setCancelled(true);
+		}
+	}
 	
 	private static String format(final double tps) {
 		return ((tps > 18.0) ? ChatColor.GREEN : ((tps > 16.0) ? ChatColor.YELLOW : ChatColor.RED)).toString() + ((tps > 21.0) ? "*" : "") + Math.min(Math.round(tps * 100.0) / 100.0, 20.0);

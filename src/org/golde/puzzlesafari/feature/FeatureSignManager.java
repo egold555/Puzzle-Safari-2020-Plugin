@@ -21,10 +21,10 @@ public class FeatureSignManager extends FeatureBase {
 	@EventHandler
 	public void onEdit(SignChangeEvent sign) {
 
-		if(sign.getLine(0).equalsIgnoreCase(">finish")) {
+		if(sign.getLine(0).equalsIgnoreCase(">done")) {
 			sign.setLine(0, "");
-			sign.setLine(1, "Click me");
-			sign.setLine(2, "to complete!");
+			sign.setLine(1, "Click me to return");
+			sign.setLine(2, "to the main lab!");
 			return;
 		}
 		
@@ -72,17 +72,15 @@ public class FeatureSignManager extends FeatureBase {
 				return;
 			}
 			
-			if((sign.getLine(1).equals("Click me") && sign.getLine(2).equals("to complete!")) || (sign.getLine(1).equals("Click me") && sign.getLine(2).equals("to go back!"))) {
+			if((sign.getLine(1).equals("Click me to return") && sign.getLine(2).equals("to the main lab!")) || (sign.getLine(1).equals("Click me") && sign.getLine(2).equals("to go back!"))) {
 				WarpManager.warpPlayer(player, "spawn");
-				setPlayerRespawnLocation(player, WarpManager.getWarp("spawn"));
 			}
 			
 			if(sign.getLine(0).equals(ChatColor.DARK_BLUE + "[Warp]")) {
 				String warpName = sign.getLine(1);
 				Location warp = WarpManager.getWarp(warpName);
 				if(warp != null) {
-					WarpManager.warpPlayer(player, warpName);
-					setPlayerRespawnLocation(player, warp);					
+					WarpManager.warpPlayer(player, warpName);			
 				}
 				else {
 					sign.setLine(0, ChatColor.DARK_RED + "[Warp]");

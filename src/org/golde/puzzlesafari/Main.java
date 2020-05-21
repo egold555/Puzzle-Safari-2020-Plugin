@@ -14,12 +14,15 @@ import org.golde.puzzlesafari.cmds.admin.warp.CommandListWarps;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandSetWarp;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandWarp;
 import org.golde.puzzlesafari.feature.FeatureBase;
+import org.golde.puzzlesafari.feature.FeatureChatBegin;
+import org.golde.puzzlesafari.feature.FeatureMineshaft;
 import org.golde.puzzlesafari.feature.FeatureMiscWorldEvents;
 import org.golde.puzzlesafari.feature.FeatureMouseMaze;
 import org.golde.puzzlesafari.feature.FeatureParkour;
 import org.golde.puzzlesafari.feature.FeatureSignManager;
 import org.golde.puzzlesafari.feature.FeatureSpawn;
 import org.golde.puzzlesafari.feature.FeatureZombieKill;
+import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
 
 public class Main extends JavaPlugin {
 
@@ -35,6 +38,9 @@ public class Main extends JavaPlugin {
 		features.add(new FeatureSignManager());
 		features.add(new FeatureSpawn());
 		features.add(new FeatureParkour());
+		features.add(new FeatureChatBegin());
+		features.add(new FeatureMineshaft());
+		features.add(new EndCuboid.EndCuboidChecker());
 	}
 	
 	

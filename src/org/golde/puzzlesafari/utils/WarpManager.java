@@ -64,6 +64,7 @@ public class WarpManager {
 //		}
 		
 		Main.getInstance().callFeatureEnterFunction(p, warpName);
+		p.setBedSpawnLocation(warp, true);
 		
 		return true;
 	}

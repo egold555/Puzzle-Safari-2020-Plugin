@@ -3,11 +3,10 @@ package org.golde.puzzlesafari.feature;
 import java.lang.reflect.Field;
 import java.util.UUID;
 
-import org.apache.commons.lang3.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
+import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,16 +19,34 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.golde.puzzlesafari.utils.ChatUtil;
+import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
+import org.golde.puzzlesafari.utils.cuboid.EndCuboid.EndCuboidCallback;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
 public class FeatureMouseMaze extends FeatureBase {
 
+	private EndCuboid endCuboid;
+	
+	@Override
+	public void onEnable() {
+	
+		endCuboid = new EndCuboid(new Location(getWorld(), -3, 17, 199), new Location(getWorld(), -3, 19, 201), new EndCuboidCallback() {
+			
+			@Override
+			public void onEnter(Player p) {
+				
+				sendFinishMessage(p, "Lab Rat", "the cheese");
+				
+			}
+		});
+		
+	}
+	
 	@Override
 	public String getWarpTrigger() {
-		return "lab-rat";
+		return "rat";
 	}
 
 	@Override
@@ -77,7 +94,7 @@ public class FeatureMouseMaze extends FeatureBase {
 		sendEnterMessage(
 				p, 
 				"Lab Rat",
-				"You are a rat involuntary participating in a drug test.", 
+				"You are a rat involuntary participating in a lab experiment.", 
 				"To find the cheese.", 
 				"&aGreen &fblocks make you jump higher."
 				);
@@ -97,7 +114,7 @@ public class FeatureMouseMaze extends FeatureBase {
 		if(e.getEntity() instanceof Player) {
 			Player p = (Player) e.getEntity();
 			ItemStack helmet = p.getInventory().getHelmet();
-			if(helmet != null && helmet.getItemMeta() != null && helmet.getItemMeta().getDisplayName() != null && helmet.getItemMeta().getDisplayName().contains("Mouse")) {
+			if(helmet != null && helmet.getItemMeta() != null && helmet.getItemMeta().getDisplayName() != null && helmet.getItemMeta().getDisplayName().contains("Rat")) {
 				e.setCancelled(true);
 			}
 		}

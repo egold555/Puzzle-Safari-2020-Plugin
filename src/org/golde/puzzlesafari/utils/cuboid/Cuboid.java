@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.utils;
+package org.golde.puzzlesafari.utils.cuboid;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,7 +21,9 @@ public class Cuboid {
 	public boolean inArea(Location targetLocation){
 		if((targetLocation.getBlockX() >= loc1.getBlockX() && targetLocation.getBlockX() <= loc2.getBlockX()) || (targetLocation.getBlockX() <= loc1.getBlockX() && targetLocation.getBlockX() >= loc2.getBlockX())){
 			if((targetLocation.getBlockZ() >= loc1.getBlockZ() && targetLocation.getBlockZ() <= loc2.getBlockZ()) || (targetLocation.getBlockZ() <= loc1.getBlockZ() && targetLocation.getBlockZ() >= loc2.getBlockZ())){
-				return true;
+				if((targetLocation.getBlockY() >= loc1.getBlockY() && targetLocation.getBlockY() <= loc2.getBlockY()) || (targetLocation.getBlockY() <= loc1.getBlockY() && targetLocation.getBlockY() >= loc2.getBlockY())){
+					return true;
+				}
 			}
 		}
 		return false;

@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.utils;
+package org.golde.puzzlesafari.utils.cuboid;
 
 import java.util.Random;
 
@@ -25,7 +25,12 @@ public class MobCuboid extends Cuboid {
 		while(mat != Material.AIR) {
 			x = getRandom(loc1.getBlockX(), loc2.getBlockX());
 			z = getRandom(loc1.getBlockZ(), loc2.getBlockZ());
-			mat = world.getBlockAt(x, y, z).getType();
+			
+			if(world.getHighestBlockAt(x, z).getLocation().getBlockY() == y) {
+				mat = world.getBlockAt(x, y, z).getType();
+			}
+			
+			
 		}
 
 		return new Location(world, x, y, z);

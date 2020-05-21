@@ -67,4 +67,17 @@ public abstract class FeatureBase implements Listener {
 		ChatUtil.sendCentredMessage(p, "&c&m" + StringUtils.repeat(" ", 80));
 	}
 	
+	protected void sendFinishMessage(Player p, String title, String pictureOf) {
+		p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.8f, 0.1f);
+		ChatUtil.sendCentredMessage(p, "&c&m" + StringUtils.repeat(" ", 80));
+		
+		ChatUtil.sendCentredMessage(p, "&e&l" + title);
+		p.sendMessage("");
+		ChatUtil.sendCentredMessage(p, "Congrats! You finished the task!");
+		p.sendMessage("");
+		ChatUtil.sendCentredMessage(p, "&6Take a picture of &a" + pictureOf + " &6and submit it!");
+		
+		ChatUtil.sendCentredMessage(p, "&c&m" + StringUtils.repeat(" ", 80));
+	}
+	
 }
