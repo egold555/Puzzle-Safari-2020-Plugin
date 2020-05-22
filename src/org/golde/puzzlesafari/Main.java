@@ -69,16 +69,11 @@ public class Main extends JavaPlugin {
 			return;
 		}
 
-		//clear inventory
-		p.getInventory().clear();
-
-		//clear potion effects
-		for (PotionEffect effect : p.getActivePotionEffects()) {
-			p.removePotionEffect(effect.getType());
-		}		p.updateInventory();
+		
 
 		for(FeatureBase fb : features) {
 			if(fb.getWarpTrigger() != null && fb.getWarpTrigger().equalsIgnoreCase(name)) {
+				fb.reset(p);
 				fb.onEnter(p);
 			}
 		}

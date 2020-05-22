@@ -86,7 +86,8 @@ public class FeatureParkour extends FeatureBase {
 				p, 
 				"Parkour",
 				"It's just a hop skip and a jump away!", 
-				"To get to the exit."
+				"To get to the exit.",
+				MOVEMENT_WASD
 				);
 	}
 	

@@ -77,6 +77,7 @@ public class FeatureZombieKill extends FeatureBase {
 				"Escape the Zombies",
 				"The zombies... are coming...", 
 				"Get to your house.", 
+				MOVEMENT_WASD_ATTACK,
 				"&oZombies are one hit kill"
 				);
 

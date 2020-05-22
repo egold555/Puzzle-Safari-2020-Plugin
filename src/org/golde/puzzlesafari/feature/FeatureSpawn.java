@@ -13,18 +13,6 @@ public class FeatureSpawn extends FeatureBase {
 	public String getWarpTrigger() {
 		return "spawn";
 	}
-
-	@Override
-	public void onEnter(Player p) {
-		
-		
-		
-		//add regen
-		p.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 20*3, 10, true));
-		
-		//reset time
-		p.resetPlayerTime();
-	}
 	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {

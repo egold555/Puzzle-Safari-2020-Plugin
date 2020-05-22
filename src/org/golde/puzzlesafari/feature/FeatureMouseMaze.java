@@ -96,6 +96,7 @@ public class FeatureMouseMaze extends FeatureBase {
 				"Lab Rat",
 				"You are a rat involuntary participating in a lab experiment.", 
 				"To find the cheese.", 
+				MOVEMENT_WASD_JUMP,
 				"&aGreen &fblocks make you jump higher."
 				);
 		

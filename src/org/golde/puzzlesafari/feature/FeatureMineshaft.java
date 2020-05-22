@@ -30,6 +30,7 @@ public class FeatureMineshaft extends FeatureBase {
 				"Mineshaft Madness",
 				"Its a long way down...", 
 				"Avoid the rails",
+				MOVEMENT_WASD,
 				"&oHit the water, and you will survive"
 				);
 	}
