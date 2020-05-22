@@ -1,6 +1,7 @@
 package org.golde.puzzlesafari.feature;
 
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -68,7 +69,7 @@ public class FeatureSignManager extends FeatureBase {
 		if(block.getState() instanceof Sign) {
 			Sign sign = (Sign) block.getState();
 			
-			if(e.getAction() != Action.RIGHT_CLICK_BLOCK) {
+			if(e.getAction() == Action.LEFT_CLICK_BLOCK && player.getGameMode() == GameMode.CREATIVE) {
 				return;
 			}
 			

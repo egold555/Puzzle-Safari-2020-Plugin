@@ -15,7 +15,7 @@ import org.golde.puzzlesafari.utils.ChatUtil;
 public abstract class FeatureBase implements Listener {
 
 
-	public void onInternalEnable() {
+	public final void onInternalEnable() {
 		Bukkit.getPluginManager().registerEvents(this, getPlugin());
 		onEnable();
 	}
@@ -69,6 +69,7 @@ public abstract class FeatureBase implements Listener {
 	public static final String MOVEMENT_WASD = "Use &bWASD&f to move, &bSpace&f to jump.";
 	public static final String MOVEMENT_WASD_JUMP = "Use &bWASD&f to move, &bSpace&f to jump.";
 	public static final String MOVEMENT_WASD_ATTACK = "Use &bWASD&f to move, &bSpace&f to jump, &bLeft Click&f to attck.";
+	public static final String MOVEMENT_WASD_ELYTRA = "Use &bWASD&f to move, &bSpace&f to deploy your wings.";
 	
 	protected void sendEnterMessage(Player p, String title, String desc, String goal, String movement) {
 		sendEnterMessage(p, title, desc, goal, movement, null);

@@ -20,6 +20,7 @@ import org.golde.puzzlesafari.feature.FeatureMiscWorldEvents;
 import org.golde.puzzlesafari.feature.FeatureMouseMaze;
 import org.golde.puzzlesafari.feature.FeatureParkour;
 import org.golde.puzzlesafari.feature.FeatureSignManager;
+import org.golde.puzzlesafari.feature.FeatureSkydiving;
 import org.golde.puzzlesafari.feature.FeatureSpawn;
 import org.golde.puzzlesafari.feature.FeatureZombieKill;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
@@ -40,6 +41,7 @@ public class Main extends JavaPlugin {
 		features.add(new FeatureParkour());
 		features.add(new FeatureChatBegin());
 		features.add(new FeatureMineshaft());
+		features.add(new FeatureSkydiving());
 		features.add(new EndCuboid.EndCuboidChecker());
 	}
 	
