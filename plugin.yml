@@ -25,3 +25,7 @@ commands:
    delwarp:
       description: Delete a warp
       usage: /delwarp <name>
+      
+   test:
+      description: Test command
+      usage: /test

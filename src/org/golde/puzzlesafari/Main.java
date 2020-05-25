@@ -6,9 +6,8 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffect;
 import org.golde.puzzlesafari.cmds.CommandPing;
-import org.golde.puzzlesafari.cmds.CommandTest;
+import org.golde.puzzlesafari.cmds.admin.CommandTest;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandDeleteWarp;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandListWarps;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandSetWarp;
@@ -23,6 +22,7 @@ import org.golde.puzzlesafari.feature.FeatureSignManager;
 import org.golde.puzzlesafari.feature.FeatureSkydiving;
 import org.golde.puzzlesafari.feature.FeatureSpawn;
 import org.golde.puzzlesafari.feature.FeatureZombieKill;
+import org.golde.puzzlesafari.feature.archery.FeatureArchery;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
 
 public class Main extends JavaPlugin {
@@ -43,6 +43,7 @@ public class Main extends JavaPlugin {
 		features.add(new FeatureMineshaft());
 		features.add(new FeatureSkydiving());
 		features.add(new EndCuboid.EndCuboidChecker());
+		features.add(new FeatureArchery());
 	}
 	
 	
@@ -51,13 +52,13 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		instance = this;
 		//saveDefaultConfig();
-		getCommand("test").setExecutor(new CommandTest());
 		getCommand("ping").setExecutor(new CommandPing());
 
 		getCommand("warp").setExecutor(new CommandWarp());
 		getCommand("warps").setExecutor(new CommandListWarps());
 		getCommand("setwarp").setExecutor(new CommandSetWarp());
 		getCommand("delwarp").setExecutor(new CommandDeleteWarp());
+		getCommand("test").setExecutor(new CommandTest());
 
 		for(FeatureBase fbp : features) {
 			fbp.onInternalEnable();
