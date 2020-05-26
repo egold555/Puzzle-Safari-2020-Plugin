@@ -14,11 +14,15 @@ public class CommandTest extends AdminCommand {
 		
 		World world = sender.getWorld();
 		Location loc = sender.getLocation();
-		
 		net.minecraft.server.v1_12_R1.WorldServer nmsWorld = ((CraftWorld)world).getHandle();
-		CustomSheep sheep = new CustomSheep(nmsWorld);
-		sheep.setPosition(loc.getX(), loc.getY(), loc.getZ());
-		nmsWorld.addEntity(sheep);
+		
+		for(int i = 0; i < 30; i++) {
+			CustomSheep sheep = new CustomSheep(nmsWorld);
+			sheep.setPosition(loc.getX(), loc.getY(), loc.getZ());
+			nmsWorld.addEntity(sheep);
+		}
+		
+		
 		sender.sendMessage("Spawned.");
 		
 	}

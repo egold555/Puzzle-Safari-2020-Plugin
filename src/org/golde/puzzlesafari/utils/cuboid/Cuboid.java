@@ -33,17 +33,17 @@ public class Cuboid {
 		return getEntitiesInCuboid(null);
 	}
 
-	public List<Entity> getEntitiesInCuboid(Class<? extends Entity> type) {
+	public <T extends org.bukkit.entity.Entity> List<T> getEntitiesInCuboid(Class<T> type) {
 
-		List<Entity> toReturn = new ArrayList<Entity>();
+		List<T> toReturn = new ArrayList<T>();
 
 		World world = loc1.getWorld();
 
-		Collection<? extends Entity> entities = (type != null ? world.getEntitiesByClass(type) : loc1.getWorld().getEntities());
+		Collection<? extends T> entities = (type != null ? world.getEntitiesByClass(type) : (Collection<T>) loc1.getWorld().getEntities());
 
 		for(Entity e : entities) {
 			if(inArea(e.getLocation())) {
-				toReturn.add(e);
+				toReturn.add((T) e);
 			}
 		}
 

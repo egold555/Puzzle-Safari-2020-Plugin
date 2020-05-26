@@ -68,7 +68,8 @@ public abstract class FeatureBase implements Listener {
 
 	public static final String MOVEMENT_WASD = "Use &bWASD&f to move, &bSpace&f to jump.";
 	public static final String MOVEMENT_WASD_JUMP = "Use &bWASD&f to move, &bSpace&f to jump.";
-	public static final String MOVEMENT_WASD_ATTACK = "Use &bWASD&f to move, &bSpace&f to jump, &bLeft Click&f to attck.";
+	public static final String MOVEMENT_WASD_ATTACK = "Use &bWASD&f to move, &bSpace&f to jump, &bLeft Click&f to attack.";
+	public static final String MOVEMENT_WASD_BOW = "Use &bWASD&f to move, &bSpace&f to jump, &bRight Click&f to draw back.";
 	public static final String MOVEMENT_WASD_ELYTRA = "Use &bWASD&f to move, &bSpace&f to deploy your wings.";
 	
 	protected void sendEnterMessage(Player p, String title, String desc, String goal, String movement) {

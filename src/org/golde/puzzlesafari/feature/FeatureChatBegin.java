@@ -8,6 +8,8 @@ import org.golde.puzzlesafari.utils.WarpManager;
 
 public class FeatureChatBegin extends FeatureBase {
 
+	private static final String ERROR_MESSAGE = "&cI am sorry, but please check the event name and try again.";
+	
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e) {
 		
@@ -24,8 +26,14 @@ public class FeatureChatBegin extends FeatureBase {
 					@Override
 					public void run() {
 						String warp = split[1].toLowerCase();
+						
+						if(warp.endsWith("end") || warp.endsWith("final") || warp.endsWith("2")) {
+							p.sendMessage(color(ERROR_MESSAGE));
+							return;
+						}
+						
 						if(!WarpManager.warpExists(warp)) {
-							p.sendMessage(color("&cI am sorry, but please check the event name and try again. Error code &62"));
+							p.sendMessage(color(ERROR_MESSAGE));
 						}
 						else {
 							WarpManager.warpPlayer(p, warp);
@@ -37,7 +45,7 @@ public class FeatureChatBegin extends FeatureBase {
 				
 			}
 			else {
-				p.sendMessage(color("&cI am sorry, but please check the event name and try again. Error code &61"));
+				p.sendMessage(color(ERROR_MESSAGE));
 			}
 			
 			e.setCancelled(true);

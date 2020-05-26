@@ -37,10 +37,14 @@ public class MobCuboid extends Cuboid {
 	}
 
 	public Location getRandomGuardianSpawn() {
+		return getRandomSpawn(2);
+	}
+	
+	public Location getRandomSpawn(int y) {
 
 		World world = Bukkit.getWorld("world");
 
-		int x = 0, y = 2, z = 0;
+		int x = 0, z = 0;
 
 		x = getRandom(loc1.getBlockX(), loc2.getBlockX());
 		z = getRandom(loc1.getBlockZ(), loc2.getBlockZ());
