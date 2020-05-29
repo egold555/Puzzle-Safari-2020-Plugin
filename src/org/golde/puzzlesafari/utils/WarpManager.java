@@ -2,11 +2,12 @@ package org.golde.puzzlesafari.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Set;
+import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -18,7 +19,10 @@ public class WarpManager {
 
 	private static final File file = new File("plugins/PuzzleSafari2020", "warps.yml");
 	private static final FileConfiguration cfg = (FileConfiguration)YamlConfiguration.loadConfiguration(file);
-
+	
+	private static final HashMap<UUID, String> lastWarp = new HashMap<UUID, String>();
+	
+	
 	public static Location getWarp(String warpName) {
 
 		if (!cfg.isSet("warps." + warpName)) {
@@ -64,7 +68,7 @@ public class WarpManager {
 //		}
 		
 		Main.getInstance().callFeatureEnterFunction(p, warpName);
-		p.setBedSpawnLocation(warp, true);
+		lastWarp.put(p.getUniqueId(), warpName);
 		
 		return true;
 	}
@@ -100,6 +104,24 @@ public class WarpManager {
 			return null;
 		}
 		return cfg.getConfigurationSection("warps").getKeys(false);
+	}
+	
+	public static String getLastWarp(Player p) {
+		if(!lastWarp.containsKey(p.getUniqueId())) {
+			return null;
+		}
+		
+		String warpName = lastWarp.get(p.getUniqueId());
+		
+//		if(!warpExists(warpName)) {
+//			return null;
+//		}
+		
+		return warpName;
+	}
+	
+	public static void setCheckpoint(Player p, String checkpoint) {
+		lastWarp.put(p.getUniqueId(), checkpoint);
 	}
 
 }

@@ -60,10 +60,14 @@ public class FeatureArchery extends FeatureBase {
 
 			@Override
 			public void run() {
-
-				if(sheepArea.getEntitiesInCuboid(Sheep.class).size() < MAX_SHEEP) {
-					spawnCustomSheep(sheepArea.getRandomSpawn(11));
+				
+				//not sure why this doewn't obay mob spawning rules, but that seems to be a issue with custom sheep / net.minecraft.World
+				if(playerArea.getEntitiesInCuboid(Player.class).size() > 0) {
+					if(sheepArea.getEntitiesInCuboid(Sheep.class).size() < MAX_SHEEP) {
+						spawnCustomSheep(sheepArea.getRandomSpawn(11));
+					}
 				}
+				
 
 			}
 		}.runTaskTimer(getPlugin(), 10, SPAWN_TICKS);

@@ -61,11 +61,6 @@ public abstract class FeatureBase implements Listener {
 		p.resetPlayerTime();
 	}
 
-	protected final void setPlayerRespawnLocation(Player player, Location loc) {
-		player.setBedSpawnLocation(loc, true);
-
-	}
-
 	public static final String MOVEMENT_WASD = "Use &bWASD&f to move, &bSpace&f to jump.";
 	public static final String MOVEMENT_WASD_JUMP = "Use &bWASD&f to move, &bSpace&f to jump.";
 	public static final String MOVEMENT_WASD_ATTACK = "Use &bWASD&f to move, &bSpace&f to jump, &bLeft Click&f to attack.";

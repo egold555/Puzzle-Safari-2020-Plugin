@@ -4,10 +4,10 @@ import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockFadeEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -19,10 +19,12 @@ import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.hanging.HangingBreakEvent.RemoveCause;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.golde.puzzlesafari.Main;
 import org.golde.puzzlesafari.utils.TabListUtil;
+import org.golde.puzzlesafari.utils.WarpManager;
 
 public class FeatureMiscWorldEvents extends FeatureBase {
 
@@ -127,6 +129,30 @@ public class FeatureMiscWorldEvents extends FeatureBase {
 	
 	private static String format(final double tps) {
 		return ((tps > 18.0) ? ChatColor.GREEN : ((tps > 16.0) ? ChatColor.YELLOW : ChatColor.RED)).toString() + ((tps > 21.0) ? "*" : "") + Math.min(Math.round(tps * 100.0) / 100.0, 20.0);
+	}
+	
+	@EventHandler
+	public void onRespawn(PlayerRespawnEvent e) {
+		
+		final Player p = e.getPlayer();
+		final String lastWarp = WarpManager.getLastWarp(p);
+		System.out.println("Respawn loc: " + lastWarp);
+		e.setRespawnLocation(WarpManager.getWarp(lastWarp));
+		
+		new BukkitRunnable() {
+
+			@Override
+			public void run() {
+				
+				
+				if(lastWarp != null) {
+					WarpManager.warpPlayer(p, lastWarp);
+				}
+			}
+			
+		}.runTaskLater(getPlugin(), 2);
+		
+		
 	}
 
 }

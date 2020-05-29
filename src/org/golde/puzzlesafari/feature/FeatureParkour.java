@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.golde.puzzlesafari.utils.WarpManager;
 import org.golde.puzzlesafari.utils.cuboid.Cuboid;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid.EndCuboidCallback;
@@ -99,7 +100,7 @@ public class FeatureParkour extends FeatureBase {
 		}
 		
 		if(checkpoint.inArea(p.getLocation())) {
-			setPlayerRespawnLocation(p, new Location(getWorld(), 109, 5, 55));
+			WarpManager.setCheckpoint(p, "parkour2");
 		}
 	}
 
