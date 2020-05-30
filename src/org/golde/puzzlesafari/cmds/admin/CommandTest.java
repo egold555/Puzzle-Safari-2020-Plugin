@@ -6,6 +6,7 @@ import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.entity.Player;
 import org.golde.puzzlesafari.cmds.base.AdminCommand;
 import org.golde.puzzlesafari.feature.archery.CustomSheep;
+import org.golde.puzzlesafari.feature.balltoss.CustomEntityBall;
 
 public class CommandTest extends AdminCommand {
 
@@ -16,8 +17,8 @@ public class CommandTest extends AdminCommand {
 		Location loc = sender.getLocation();
 		net.minecraft.server.v1_12_R1.WorldServer nmsWorld = ((CraftWorld)world).getHandle();
 		
-		for(int i = 0; i < 30; i++) {
-			CustomSheep sheep = new CustomSheep(nmsWorld);
+		for(int i = 0; i < 1; i++) {
+			CustomEntityBall sheep = new CustomEntityBall(nmsWorld);
 			sheep.setPosition(loc.getX(), loc.getY(), loc.getZ());
 			nmsWorld.addEntity(sheep);
 		}

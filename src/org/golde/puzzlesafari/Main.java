@@ -13,7 +13,6 @@ import org.golde.puzzlesafari.cmds.admin.warp.CommandListWarps;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandSetWarp;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandWarp;
 import org.golde.puzzlesafari.feature.FeatureBase;
-import org.golde.puzzlesafari.feature.FeatureBasketball;
 import org.golde.puzzlesafari.feature.FeatureChatBegin;
 import org.golde.puzzlesafari.feature.FeatureMineshaft;
 import org.golde.puzzlesafari.feature.FeatureMiscWorldEvents;
@@ -24,6 +23,7 @@ import org.golde.puzzlesafari.feature.FeatureSkydiving;
 import org.golde.puzzlesafari.feature.FeatureSpawn;
 import org.golde.puzzlesafari.feature.FeatureZombieKill;
 import org.golde.puzzlesafari.feature.archery.FeatureArchery;
+import org.golde.puzzlesafari.feature.balltoss.FeatureBasketball;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
 
 public class Main extends JavaPlugin {
