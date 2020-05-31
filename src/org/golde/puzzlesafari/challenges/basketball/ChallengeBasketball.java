@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.feature.balltoss;
+package org.golde.puzzlesafari.challenges.basketball;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,15 +29,15 @@ import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
+import org.golde.puzzlesafari.challenges.Challenge;
 import org.golde.puzzlesafari.constants.TheGridSFX;
-import org.golde.puzzlesafari.feature.FeatureBase;
 import org.golde.puzzlesafari.utils.NMSUtils;
 import org.golde.puzzlesafari.utils.NMSUtils.Type;
 import org.golde.puzzlesafari.utils.WarpManager;
 import org.golde.puzzlesafari.utils.cuboid.Cuboid;
 import org.golde.puzzlesafari.utils.cuboid.MobCuboid;
 
-public class FeatureBasketball extends FeatureBase {
+public class ChallengeBasketball extends Challenge {
 
 	private Cuboid goal;
 	private MobCuboid playArea;
@@ -66,9 +66,13 @@ public class FeatureBasketball extends FeatureBase {
 	}
 
 	@Override
+	public String getTitle() {
+		return "Basket Ball";
+	}
+	
+	@Override
 	public void onEnter(Player p) {
 		sendEnterMessage(p, 
-				"Basket Ball", 
 				"\"U gotta Get'cha get'cha head in the game\"", 
 				"Make " + HOW_MANY_TO_HIT_TO_WIN + " baskets", MOVEMENT_WASD_RIGHT_CLICK + "throw ball"
 				);
@@ -177,7 +181,7 @@ public class FeatureBasketball extends FeatureBase {
 							//win
 							reset(p);
 							WarpManager.warpPlayer(p, "basketballend");
-							sendFinishMessage(p, "Basketball", "the giant &msoccer&a basket ball");
+							sendFinishMessage(p, "the giant &msoccer&a basket ball");
 							
 							playerScore.put(playerUUID, 0);
 						}

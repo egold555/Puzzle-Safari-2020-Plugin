@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.feature.archery;
+package org.golde.puzzlesafari.challenges.archery;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -24,14 +24,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.golde.puzzlesafari.feature.FeatureBase;
+import org.golde.puzzlesafari.challenges.Challenge;
 import org.golde.puzzlesafari.utils.NMSUtils;
 import org.golde.puzzlesafari.utils.NMSUtils.Type;
 import org.golde.puzzlesafari.utils.WarpManager;
 import org.golde.puzzlesafari.utils.cuboid.Cuboid;
 import org.golde.puzzlesafari.utils.cuboid.MobCuboid;
 
-public class FeatureArchery extends FeatureBase {
+public class ChallengeArchery extends Challenge {
 
 	private HashMap<UUID, Integer> sheepHit = new HashMap<UUID, Integer>();
 	private static final int MAX_SHEEP = 10;
@@ -121,6 +121,11 @@ public class FeatureArchery extends FeatureBase {
 	}
 	
 	@Override
+	public String getTitle() {
+		return "Sheep Shenanigans";
+	}
+	
+	@Override
 	public void onEnter(Player p) {
 		sheepHit.put(p.getUniqueId(), 0);
 		
@@ -150,7 +155,6 @@ public class FeatureArchery extends FeatureBase {
 		
 		sendEnterMessage(
 				p, 
-				"Sheep Shenanigans",
 				"Are ewe ready for this?", 
 				"Kill " + HOW_MANY_TO_HIT_TO_WIN + " Sheep.", 
 				MOVEMENT_WASD_ATTACK
@@ -197,7 +201,7 @@ public class FeatureArchery extends FeatureBase {
 				//win
 				reset(player);
 				WarpManager.warpPlayer(player, "sheepend");
-				sendFinishMessage(player, "Sheep Shenanigans", "The giant sheep");
+				sendFinishMessage(player, "giant sheep");
 				
 				sheepHit.put(playerUUID, 0);
 			}

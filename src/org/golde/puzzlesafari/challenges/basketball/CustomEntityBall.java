@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.feature.balltoss;
+package org.golde.puzzlesafari.challenges.basketball;
 
 import java.lang.reflect.Field;
 import java.util.Set;

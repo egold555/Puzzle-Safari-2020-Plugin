@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.feature.archery;
+package org.golde.puzzlesafari.challenges.archery;
 
 import java.lang.reflect.Field;
 import java.util.Set;
