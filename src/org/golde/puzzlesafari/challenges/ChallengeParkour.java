@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.feature;
+package org.golde.puzzlesafari.challenges;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -19,7 +19,7 @@ import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid.EndCuboidCallback;
 import org.golde.puzzlesafari.utils.cuboid.MobCuboid;
 
-public class FeatureParkour extends FeatureBase {
+public class ChallengeParkour extends Challenge {
 
 	private Cuboid checkpoint;
 	private MobCuboid guardians;
@@ -38,7 +38,7 @@ public class FeatureParkour extends FeatureBase {
 
 			@Override
 			public void onEnter(Player p) {
-				sendFinishMessage(p, "Parkour", "the white wall");
+				sendFinishMessage(p, "white wall");
 			}
 		});
 
@@ -79,12 +79,16 @@ public class FeatureParkour extends FeatureBase {
 	public String getWarpTrigger() {
 		return "parkour";
 	}
+	
+	@Override
+	public String getTitle() {
+		return "Parkour";
+	}
 
 	@Override
 	public void onEnter(Player p) {
 		sendEnterMessage(
 				p, 
-				"Parkour",
 				"It's just a hop skip and a jump away!", 
 				"To get to the exit.",
 				MOVEMENT_WASD

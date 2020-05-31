@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.feature;
+package org.golde.puzzlesafari.challenges;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -10,7 +10,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid.EndCuboidCallback;
 
-public class FeatureSkydiving extends FeatureBase {
+public class ChallengeSkydiving extends Challenge {
 
 	@Override
 	public void onEnable() {
@@ -19,7 +19,7 @@ public class FeatureSkydiving extends FeatureBase {
 
 			@Override
 			public void onEnter(Player p) {
-				sendFinishMessage(p, "Skydiving", "the windmill and the lake");
+				sendFinishMessage(p, "windmill and the lake");
 			}
 		});
 		
@@ -31,11 +31,15 @@ public class FeatureSkydiving extends FeatureBase {
 	}
 	
 	@Override
+	public String getTitle() {
+		return "Skydiving";
+	}
+	
+	@Override
 	public void onEnter(Player p) {
 		
 		sendEnterMessage(
 				p, 
-				"Skydiving",
 				"Just don't look down alright!", 
 				"Get to the village", 
 				MOVEMENT_WASD_ELYTRA,

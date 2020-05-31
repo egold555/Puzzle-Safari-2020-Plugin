@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.feature;
+package org.golde.puzzlesafari.eventhandler;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
@@ -25,7 +25,7 @@ import org.golde.puzzlesafari.Main;
 import org.golde.puzzlesafari.utils.TabListUtil;
 import org.golde.puzzlesafari.utils.WarpManager;
 
-public class FeatureMiscWorldEvents extends FeatureBase {
+public class EventHandlerMiscWorldEvents extends EventHandlerBase {
 
 	@Override
 	public void onEnable() {

@@ -10,7 +10,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.golde.puzzlesafari.feature.FeatureBase;
+import org.golde.puzzlesafari.eventhandler.EventHandlerBase;
 
 public class EndCuboid extends Cuboid {
 
@@ -29,7 +29,7 @@ public class EndCuboid extends Cuboid {
 	}
 
 
-	public static class EndCuboidChecker extends FeatureBase {
+	public static class EndCuboidChecker extends EventHandlerBase {
 
 		public void onEnable() {
 

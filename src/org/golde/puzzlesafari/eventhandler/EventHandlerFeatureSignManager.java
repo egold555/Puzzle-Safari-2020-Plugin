@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.feature;
+package org.golde.puzzlesafari.eventhandler;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -13,7 +13,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.golde.puzzlesafari.utils.WarpManager;
 
-public class FeatureSignManager extends FeatureBase {
+public class EventHandlerFeatureSignManager extends EventHandlerBase {
 
 	@Override
 	public void onEnable() {

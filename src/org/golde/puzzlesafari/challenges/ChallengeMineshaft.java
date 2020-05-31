@@ -1,15 +1,20 @@
-package org.golde.puzzlesafari.feature;
+package org.golde.puzzlesafari.challenges;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid.EndCuboidCallback;
 
-public class FeatureMineshaft extends FeatureBase {
+public class ChallengeMineshaft extends Challenge {
 
 	@Override
 	public String getWarpTrigger() {
 		return "mineshaft";
+	}
+	
+	@Override
+	public String getTitle() {
+		return "Mineshaft Madness";
 	}
 	
 	@Override
@@ -18,7 +23,7 @@ public class FeatureMineshaft extends FeatureBase {
 
 			@Override
 			public void onEnter(Player p) {
-				sendFinishMessage(p, "Mineshaft Madness", "the red wall");
+				sendFinishMessage(p, "red wall");
 			}
 		});
 	}
@@ -27,7 +32,6 @@ public class FeatureMineshaft extends FeatureBase {
 	public void onEnter(Player p) {
 		sendEnterMessage(
 				p, 
-				"Mineshaft Madness",
 				"Its a long way down...", 
 				"Avoid the rails",
 				MOVEMENT_WASD,

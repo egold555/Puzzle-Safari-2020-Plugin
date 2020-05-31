@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.feature;
+package org.golde.puzzlesafari.challenges;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -8,7 +8,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.golde.puzzlesafari.utils.WarpManager;
 
-public class FeatureElements extends FeatureBase {
+public class ChallengeElements extends Challenge {
 
 	private static final String[] WORDS = {"mercury", "bismuth", "sodium"};
 	
@@ -18,10 +18,14 @@ public class FeatureElements extends FeatureBase {
 	}
 	
 	@Override
+	public String getTitle() {
+		return "Perspective Elements";
+	}
+	
+	@Override
 	public void onEnter(Player p) {
 		sendEnterMessage(
 				p, 
-				"Perspective Elements", 
 				"After you finish, Press &aC&f, then type all the words", 
 				"Find 3 hidden elements", 
 				MOVEMENT_WASD, 
@@ -51,7 +55,7 @@ public class FeatureElements extends FeatureBase {
 					Player p = e.getPlayer();
 					reset(p);
 					WarpManager.warpPlayer(p, "elementsend");
-					sendFinishMessage(p, "Perspective Elements", "the periodic table");
+					sendFinishMessage(p, "periodic table");
 				}
 				
 			}.runTaskLater(getPlugin(), 2);

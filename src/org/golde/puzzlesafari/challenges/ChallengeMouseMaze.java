@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.feature;
+package org.golde.puzzlesafari.challenges;
 
 import java.lang.reflect.Field;
 import java.util.UUID;
@@ -25,7 +25,7 @@ import org.golde.puzzlesafari.utils.cuboid.EndCuboid.EndCuboidCallback;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
-public class FeatureMouseMaze extends FeatureBase {
+public class ChallengeMouseMaze extends Challenge {
 	
 	@Override
 	public void onEnable() {
@@ -35,7 +35,7 @@ public class FeatureMouseMaze extends FeatureBase {
 			@Override
 			public void onEnter(Player p) {
 				
-				sendFinishMessage(p, "Lab Rat", "the cheese");
+				sendFinishMessage(p, "cheese");
 				
 			}
 		});
@@ -45,6 +45,11 @@ public class FeatureMouseMaze extends FeatureBase {
 	@Override
 	public String getWarpTrigger() {
 		return "rat";
+	}
+	
+	@Override
+	public String getTitle() {
+		return "Lab Rat";
 	}
 
 	@Override
@@ -91,7 +96,6 @@ public class FeatureMouseMaze extends FeatureBase {
 		
 		sendEnterMessage(
 				p, 
-				"Lab Rat",
 				"You are a rat involuntary participating in a lab experiment.", 
 				"To find the cheese.", 
 				MOVEMENT_WASD_JUMP,

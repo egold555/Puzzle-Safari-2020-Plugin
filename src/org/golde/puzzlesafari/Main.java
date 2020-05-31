@@ -6,48 +6,52 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.golde.puzzlesafari.challenges.Challenge;
+import org.golde.puzzlesafari.challenges.ChallengeElements;
+import org.golde.puzzlesafari.challenges.ChallengeMineshaft;
+import org.golde.puzzlesafari.challenges.ChallengeMouseMaze;
+import org.golde.puzzlesafari.challenges.ChallengeParkour;
+import org.golde.puzzlesafari.challenges.ChallengeSkydiving;
+import org.golde.puzzlesafari.challenges.ChallengeZombieKill;
+import org.golde.puzzlesafari.challenges.archery.ChallengeArchery;
+import org.golde.puzzlesafari.challenges.basketball.ChallengeBasketball;
 import org.golde.puzzlesafari.cmds.CommandPing;
 import org.golde.puzzlesafari.cmds.admin.CommandTest;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandDeleteWarp;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandListWarps;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandSetWarp;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandWarp;
-import org.golde.puzzlesafari.feature.FeatureBase;
-import org.golde.puzzlesafari.feature.FeatureChatBegin;
-import org.golde.puzzlesafari.feature.FeatureElements;
-import org.golde.puzzlesafari.feature.FeatureMineshaft;
-import org.golde.puzzlesafari.feature.FeatureMiscWorldEvents;
-import org.golde.puzzlesafari.feature.FeatureMouseMaze;
-import org.golde.puzzlesafari.feature.FeatureParkour;
-import org.golde.puzzlesafari.feature.FeatureSignManager;
-import org.golde.puzzlesafari.feature.FeatureSkydiving;
-import org.golde.puzzlesafari.feature.FeatureSpawn;
-import org.golde.puzzlesafari.feature.FeatureZombieKill;
-import org.golde.puzzlesafari.feature.archery.FeatureArchery;
-import org.golde.puzzlesafari.feature.balltoss.FeatureBasketball;
+import org.golde.puzzlesafari.eventhandler.EventHandlerBase;
+import org.golde.puzzlesafari.eventhandler.EventHandlerChatBegin;
+import org.golde.puzzlesafari.eventhandler.EventHandlerMiscWorldEvents;
+import org.golde.puzzlesafari.eventhandler.EventHandlerFeatureSignManager;
+import org.golde.puzzlesafari.eventhandler.EventHandlerFeatureSpawn;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
 
 public class Main extends JavaPlugin {
 
 	private static Main instance;
 
-	private List<FeatureBase> features = new ArrayList<FeatureBase>();
+	private List<EventHandlerBase> eventHandlers = new ArrayList<EventHandlerBase>();
+	private List<Challenge> challenges = new ArrayList<Challenge>();
 
 	@Override
 	public void onLoad() {
-		features.add(new FeatureMiscWorldEvents());
-		features.add(new FeatureMouseMaze());
-		features.add(new FeatureZombieKill());
-		features.add(new FeatureSignManager());
-		features.add(new FeatureSpawn());
-		features.add(new FeatureParkour());
-		features.add(new FeatureChatBegin());
-		features.add(new FeatureMineshaft());
-		features.add(new FeatureSkydiving());
-		features.add(new EndCuboid.EndCuboidChecker());
-		features.add(new FeatureArchery());
-		features.add(new FeatureBasketball());
-		features.add(new FeatureElements());
+		registerEventHandler(new EventHandlerMiscWorldEvents());
+		registerEventHandler(new EventHandlerFeatureSignManager());
+		registerEventHandler(new EventHandlerFeatureSpawn());
+		registerEventHandler(new EventHandlerChatBegin());
+		registerEventHandler(new EndCuboid.EndCuboidChecker());
+		
+		
+		registerChallenge(new ChallengeMouseMaze());
+		registerChallenge(new ChallengeZombieKill());
+		registerChallenge(new ChallengeParkour());
+		registerChallenge(new ChallengeMineshaft());
+		registerChallenge(new ChallengeSkydiving());
+		registerChallenge(new ChallengeArchery());
+		registerChallenge(new ChallengeBasketball());
+		registerChallenge(new ChallengeElements());
 	}
 	
 	
@@ -64,7 +68,7 @@ public class Main extends JavaPlugin {
 		getCommand("delwarp").setExecutor(new CommandDeleteWarp());
 		getCommand("test").setExecutor(new CommandTest());
 
-		for(FeatureBase fbp : features) {
+		for(EventHandlerBase fbp : eventHandlers) {
 			fbp.onInternalEnable();
 		}
 
@@ -78,7 +82,7 @@ public class Main extends JavaPlugin {
 
 		
 
-		for(FeatureBase fb : features) {
+		for(Challenge fb : challenges) {
 			if(fb.getWarpTrigger() != null && fb.getWarpTrigger().equalsIgnoreCase(name)) {
 				fb.reset(p);
 				fb.onEnter(p);
@@ -89,7 +93,7 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-		for(FeatureBase fbp : features) {
+		for(EventHandlerBase fbp : eventHandlers) {
 			fbp.onDisable();
 		}
 	}
@@ -100,6 +104,14 @@ public class Main extends JavaPlugin {
 
 	public String color(String msg) {
 		return ChatColor.translateAlternateColorCodes('&', msg);
+	}
+	
+	private void registerChallenge(Challenge challenge) {
+		challenges.add(challenge);
+		registerEventHandler(challenge);
+	}
+	private void registerEventHandler(EventHandlerBase handler) {
+		eventHandlers.add(handler);
 	}
 
 }

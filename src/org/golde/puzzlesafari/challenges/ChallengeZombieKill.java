@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.feature;
+package org.golde.puzzlesafari.challenges;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -16,15 +16,15 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.golde.puzzlesafari.constants.TheGridSFX;
 import org.golde.puzzlesafari.utils.cuboid.Cuboid;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
-import org.golde.puzzlesafari.utils.cuboid.MobCuboid;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid.EndCuboidCallback;
+import org.golde.puzzlesafari.utils.cuboid.MobCuboid;
 
 /**
  * Zombies should have faces!
  * Visit warp debug!!!remote
  *
  */
-public class FeatureZombieKill extends FeatureBase {
+public class ChallengeZombieKill extends Challenge {
 
 	private MobCuboid cuboid;
 	private Cuboid zombieKillCuboid;
@@ -48,7 +48,7 @@ public class FeatureZombieKill extends FeatureBase {
 
 			@Override
 			public void onEnter(Player p) {
-				sendFinishMessage(p, "Escape the Zombies", "the painting");
+				sendFinishMessage(p, "painting");
 			}
 		});
 
@@ -59,6 +59,11 @@ public class FeatureZombieKill extends FeatureBase {
 	@Override
 	public String getWarpTrigger() {
 		return "zombie";
+	}
+	
+	@Override
+	public String getTitle() {
+		return "Escape the Zombies";
 	}
 
 	@Override
@@ -79,7 +84,6 @@ public class FeatureZombieKill extends FeatureBase {
 
 		sendEnterMessage(
 				p, 
-				"Escape the Zombies",
 				"The zombies... are coming...", 
 				"Get to your house.", 
 				MOVEMENT_WASD_ATTACK,

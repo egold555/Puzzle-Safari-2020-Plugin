@@ -1,10 +1,10 @@
-package org.golde.puzzlesafari.feature;
+package org.golde.puzzlesafari.eventhandler;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.golde.puzzlesafari.utils.WarpManager;
 
-public class FeatureSpawn extends FeatureBase {
+public class EventHandlerFeatureSpawn extends EventHandlerBase {
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {

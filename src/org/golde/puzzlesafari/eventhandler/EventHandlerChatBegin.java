@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.feature;
+package org.golde.puzzlesafari.eventhandler;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -7,7 +7,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.golde.puzzlesafari.utils.WarpManager;
 
-public class FeatureChatBegin extends FeatureBase {
+public class EventHandlerChatBegin extends EventHandlerBase {
 
 	private static final String ERROR_MESSAGE = "&cI am sorry, but please check the event name and try again.";
 

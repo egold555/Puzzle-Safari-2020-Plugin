@@ -4,8 +4,8 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.entity.Player;
+import org.golde.puzzlesafari.challenges.basketball.CustomEntityBall;
 import org.golde.puzzlesafari.cmds.base.AdminCommand;
-import org.golde.puzzlesafari.feature.balltoss.CustomEntityBall;
 
 public class CommandTest extends AdminCommand {
 
