@@ -14,6 +14,7 @@ import org.golde.puzzlesafari.cmds.admin.warp.CommandSetWarp;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandWarp;
 import org.golde.puzzlesafari.feature.FeatureBase;
 import org.golde.puzzlesafari.feature.FeatureChatBegin;
+import org.golde.puzzlesafari.feature.FeatureElements;
 import org.golde.puzzlesafari.feature.FeatureMineshaft;
 import org.golde.puzzlesafari.feature.FeatureMiscWorldEvents;
 import org.golde.puzzlesafari.feature.FeatureMouseMaze;
@@ -46,6 +47,7 @@ public class Main extends JavaPlugin {
 		features.add(new EndCuboid.EndCuboidChecker());
 		features.add(new FeatureArchery());
 		features.add(new FeatureBasketball());
+		features.add(new FeatureElements());
 	}
 	
 	

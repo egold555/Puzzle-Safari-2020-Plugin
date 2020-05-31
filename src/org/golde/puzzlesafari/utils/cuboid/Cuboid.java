@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 
@@ -29,10 +30,7 @@ public class Cuboid {
 		return false;
 	}
 
-	public List<Entity> getEntitiesInCuboid() {
-		return getEntitiesInCuboid(null);
-	}
-
+	@SuppressWarnings("unchecked")
 	public <T extends org.bukkit.entity.Entity> List<T> getEntitiesInCuboid(Class<T> type) {
 
 		List<T> toReturn = new ArrayList<T>();
@@ -56,6 +54,19 @@ public class Cuboid {
 
 	public final Location getLoc2() {
 		return loc2;
+	}
+	
+	public void drawDebugParticles() {
+		
+		for(int x = Math.min(loc1.getBlockX(), loc2.getBlockX()); x <=  Math.max(loc1.getBlockX(), loc2.getBlockX()); x++) {
+			for(int y =  Math.min(loc1.getBlockY(), loc2.getBlockY()); y <= Math.max(loc1.getBlockY(), loc2.getBlockY()); y++) {
+				for(int z =  Math.min(loc1.getBlockZ(), loc2.getBlockZ()); z <= Math.max(loc1.getBlockZ(), loc2.getBlockZ()); z++) {
+					loc1.getWorld().spawnParticle(Particle.REDSTONE, x + 0.5, y + 0.5, z + 0.5, 1, 0, 0, 0, 0);
+					
+				}
+			}
+		}
+		
 	}
 
 

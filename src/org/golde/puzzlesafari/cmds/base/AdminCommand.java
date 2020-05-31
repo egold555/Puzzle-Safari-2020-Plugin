@@ -1,6 +1,5 @@
 package org.golde.puzzlesafari.cmds.base;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public abstract class AdminCommand extends PlayerCommand {

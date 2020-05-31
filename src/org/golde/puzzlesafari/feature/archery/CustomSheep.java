@@ -55,7 +55,7 @@ public class CustomSheep extends EntitySheep {
 
 	}
 
-	static Object getPrivateField(String fieldName, Class clazz,
+	static Object getPrivateField(String fieldName, Class<?> clazz,
 			Object object) {
 		Field field;
 		Object o = null;

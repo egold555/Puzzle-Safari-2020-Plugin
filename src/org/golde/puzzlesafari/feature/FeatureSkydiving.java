@@ -1,13 +1,11 @@
 package org.golde.puzzlesafari.feature;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid.EndCuboidCallback;

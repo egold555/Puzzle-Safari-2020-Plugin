@@ -195,6 +195,7 @@ public class FeatureArchery extends FeatureBase {
 	
 			if(haveGottenNew >= HOW_MANY_TO_HIT_TO_WIN) {
 				//win
+				reset(player);
 				WarpManager.warpPlayer(player, "sheepend");
 				sendFinishMessage(player, "Sheep Shenanigans", "The giant sheep");
 				

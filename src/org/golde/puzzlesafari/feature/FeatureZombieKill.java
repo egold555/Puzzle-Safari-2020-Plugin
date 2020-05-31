@@ -19,6 +19,11 @@ import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
 import org.golde.puzzlesafari.utils.cuboid.MobCuboid;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid.EndCuboidCallback;
 
+/**
+ * Zombies should have faces!
+ * Visit warp debug!!!remote
+ *
+ */
 public class FeatureZombieKill extends FeatureBase {
 
 	private MobCuboid cuboid;
@@ -137,6 +142,7 @@ public class FeatureZombieKill extends FeatureBase {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	private void spawnAZombie() {
 
 		Location spawnLoc = cuboid.getRandomZombieSpawn();

@@ -12,8 +12,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.golde.puzzlesafari.utils.WarpManager;
 import org.golde.puzzlesafari.utils.cuboid.Cuboid;
@@ -105,7 +103,7 @@ public class FeatureParkour extends FeatureBase {
 	public void onDoorInteract(PlayerInteractEvent e) {
 
 		if(e.getPlayer().getGameMode() != GameMode.CREATIVE) {
-			if (e.getClickedBlock().getType() == Material.BIRCH_DOOR) {
+			if (e.getClickedBlock() != null && e.getClickedBlock().getType() == Material.BIRCH_DOOR) {
 				e.setCancelled(true);
 			}
 		}

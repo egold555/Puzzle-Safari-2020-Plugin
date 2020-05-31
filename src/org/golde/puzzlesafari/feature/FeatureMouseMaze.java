@@ -26,13 +26,11 @@ import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 
 public class FeatureMouseMaze extends FeatureBase {
-
-	private EndCuboid endCuboid;
 	
 	@Override
 	public void onEnable() {
 	
-		endCuboid = new EndCuboid(new Location(getWorld(), -3, 17, 199), new Location(getWorld(), -3, 19, 201), new EndCuboidCallback() {
+		new EndCuboid(new Location(getWorld(), -3, 17, 199), new Location(getWorld(), -3, 19, 201), new EndCuboidCallback() {
 			
 			@Override
 			public void onEnter(Player p) {

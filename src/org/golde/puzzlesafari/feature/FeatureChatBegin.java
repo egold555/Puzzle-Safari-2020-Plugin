@@ -17,7 +17,7 @@ public class FeatureChatBegin extends FeatureBase {
 		String msg = e.getMessage().toLowerCase();
 		Player p = e.getPlayer();
 
-		if(msg.startsWith("begin ")) {
+		if(msg.startsWith("begin ") || msg.startsWith("start ")) {
 			String[] split = msg.split(" ");
 			if(split.length == 2) {
 
