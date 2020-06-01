@@ -15,13 +15,21 @@ public class ChallengeSkydiving extends Challenge {
 	@Override
 	public void onEnable() {
 		
-		new EndCuboid(new Location(getWorld(), -3247, 65, -3212), new Location(getWorld(), -3188, 83, -3267), new EndCuboidCallback() {
+		EndCuboid end = new EndCuboid(new Location(getWorld(), -3247, 65, -3212), new Location(getWorld(), -3188, 83, -3267), new EndCuboidCallback() {
 
 			@Override
 			public void onEnter(Player p) {
 				sendFinishMessage(p, "windmill and the lake");
 			}
 		});
+		
+		new BukkitRunnable() {
+			
+			@Override
+			public void run() {
+				end.drawDebugParticles();
+			}
+		}.runTaskTimer(getPlugin(), 0, 1);
 		
 	}
 	

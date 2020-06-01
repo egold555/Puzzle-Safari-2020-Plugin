@@ -27,6 +27,7 @@ import org.golde.puzzlesafari.eventhandler.EventHandlerMiscWorldEvents;
 import org.golde.puzzlesafari.eventhandler.EventHandlerFeatureSignManager;
 import org.golde.puzzlesafari.eventhandler.EventHandlerFeatureSpawn;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
+import org.golde.puzzlesafari.utils.cuboid.EndCuboid.EventHandlerEndCuboidChecker;
 
 public class Main extends JavaPlugin {
 
@@ -41,7 +42,7 @@ public class Main extends JavaPlugin {
 		registerEventHandler(new EventHandlerFeatureSignManager());
 		registerEventHandler(new EventHandlerFeatureSpawn());
 		registerEventHandler(new EventHandlerChatBegin());
-		registerEventHandler(new EndCuboid.EndCuboidChecker());
+		registerEventHandler(new EventHandlerEndCuboidChecker());
 		
 		
 		registerChallenge(new ChallengeMouseMaze());

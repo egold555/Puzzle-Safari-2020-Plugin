@@ -29,7 +29,7 @@ public class EndCuboid extends Cuboid {
 	}
 
 
-	public static class EndCuboidChecker extends EventHandlerBase {
+	public static class EventHandlerEndCuboidChecker extends EventHandlerBase {
 
 		public void onEnable() {
 
