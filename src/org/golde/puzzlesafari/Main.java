@@ -13,6 +13,7 @@ import org.golde.puzzlesafari.challenges.ChallengeMouseMaze;
 import org.golde.puzzlesafari.challenges.ChallengeParkour;
 import org.golde.puzzlesafari.challenges.ChallengeSkydiving;
 import org.golde.puzzlesafari.challenges.ChallengeZombieKill;
+import org.golde.puzzlesafari.challenges.NotAChallengeButINeedChallengeEventsForSpawn;
 import org.golde.puzzlesafari.challenges.archery.ChallengeArchery;
 import org.golde.puzzlesafari.challenges.basketball.ChallengeBasketball;
 import org.golde.puzzlesafari.cmds.CommandPing;
@@ -25,7 +26,6 @@ import org.golde.puzzlesafari.eventhandler.EventHandlerBase;
 import org.golde.puzzlesafari.eventhandler.EventHandlerChatBegin;
 import org.golde.puzzlesafari.eventhandler.EventHandlerMiscWorldEvents;
 import org.golde.puzzlesafari.eventhandler.EventHandlerFeatureSignManager;
-import org.golde.puzzlesafari.eventhandler.EventHandlerFeatureSpawn;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid;
 import org.golde.puzzlesafari.utils.cuboid.EndCuboid.EventHandlerEndCuboidChecker;
 
@@ -40,7 +40,7 @@ public class Main extends JavaPlugin {
 	public void onLoad() {
 		registerEventHandler(new EventHandlerMiscWorldEvents());
 		registerEventHandler(new EventHandlerFeatureSignManager());
-		registerEventHandler(new EventHandlerFeatureSpawn());
+		registerEventHandler(new NotAChallengeButINeedChallengeEventsForSpawn());
 		registerEventHandler(new EventHandlerChatBegin());
 		registerEventHandler(new EventHandlerEndCuboidChecker());
 		

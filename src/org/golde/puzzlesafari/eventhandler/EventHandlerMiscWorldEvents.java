@@ -27,6 +27,9 @@ import org.golde.puzzlesafari.utils.WarpManager;
 
 public class EventHandlerMiscWorldEvents extends EventHandlerBase {
 
+	private final Runtime runtime = Runtime.getRuntime();
+	private final int MB = 1048576;
+	
 	@Override
 	public void onEnable() {
 		startTabListTimer();
@@ -75,7 +78,13 @@ public class EventHandlerMiscWorldEvents extends EventHandlerBase {
 
 
 
-					TabListUtil.sendTablist(p, ChatColor.YELLOW + "" + ChatColor.BOLD + "Puzzle Safari 2020", ChatColor.GOLD + "Server Preformance: " + StringUtils.join(tpsAvg, ", "));
+					TabListUtil.sendTablist(
+							p, 
+							ChatColor.YELLOW + "" + ChatColor.BOLD + "Puzzle Safari 2020", 
+							ChatColor.GOLD + "Server TPS: " + StringUtils.join(tpsAvg, ", ") + "\n"
+							+ ChatColor.AQUA + "Server Ram: " + ((runtime.totalMemory() - runtime.freeMemory()) / MB) + "MB / " + (runtime.totalMemory() / MB) + "MB"
+							
+							);
 				}
 			}
 		}.runTaskTimer(Main.getInstance(), 0, 20 * 5);

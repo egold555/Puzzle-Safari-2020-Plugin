@@ -1,4 +1,4 @@
-package org.golde.puzzlesafari.eventhandler;
+package org.golde.puzzlesafari.challenges;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,10 +15,11 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.golde.puzzlesafari.eventhandler.EventHandlerBase;
 import org.golde.puzzlesafari.utils.WarpManager;
 import org.golde.puzzlesafari.utils.cuboid.Cuboid;
 
-public class EventHandlerFeatureSpawn extends EventHandlerBase {
+public class NotAChallengeButINeedChallengeEventsForSpawn extends Challenge {
 
 	private Cuboid lobby;
 
@@ -92,6 +93,22 @@ public class EventHandlerFeatureSpawn extends EventHandlerBase {
 				e.setCancelled(true);
 			}
 		}
+	}
+
+	@Override
+	public String getWarpTrigger() {
+		return "spawn";
+	}
+
+	@Override
+	public void onEnter(Player p) {
+		reset(p);
+	}
+
+	//unused
+	@Override
+	public String getTitle() {
+		return null;
 	}
 
 }
