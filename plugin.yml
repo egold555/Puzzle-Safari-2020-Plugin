@@ -2,6 +2,7 @@ name: PuzzleSafari2020
 author: Eric Golde
 main: org.golde.puzzlesafari.Main
 version: 1.0.0
+depends: [ProtocolLib]
 commands:
    test:
       description: Test
@@ -29,3 +30,7 @@ commands:
    test:
       description: Test command
       usage: /test
+      
+   fix:
+      description: I really hope I dont need to use this
+      usage: /fix <challenge>

@@ -40,7 +40,7 @@ import org.golde.puzzlesafari.utils.cuboid.MobCuboid;
 public class ChallengeBasketball extends Challenge {
 
 	private Cuboid goal;
-	private MobCuboid playArea;
+	private static MobCuboid playArea;
 	private static final int MAX_BALLS = 5;
 	private static final int HOW_MANY_TO_HIT_TO_WIN = 3;
 	private static final int CLEAR_TICKS = 20 * 60 * 15;
@@ -58,6 +58,13 @@ public class ChallengeBasketball extends Challenge {
 		startTimers();
 
 
+	}
+	
+	// /fix command to kill and reset all entities
+	public static void ericFixCommand() {
+		for(Entity z : playArea.getEntitiesInCuboid(Slime.class)) {
+			((Slime)z).damage(100);
+		}
 	}
 
 	@Override

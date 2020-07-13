@@ -40,7 +40,7 @@ public class ChallengeArchery extends Challenge {
 	private static final int SPAWN_TICKS = 20;
 	
 	private Cuboid playerArea;
-	private MobCuboid sheepArea;
+	private static MobCuboid sheepArea;
 	
 	@Override
 	public void onEnable() {
@@ -51,6 +51,13 @@ public class ChallengeArchery extends Challenge {
 		
 		startTimer();
 		
+	}
+	
+	// /fix command to kill and reset all entities
+	public static void ericFixCommand() {
+		for(Entity z : sheepArea.getEntitiesInCuboid(Sheep.class)) {
+			((Sheep)z).damage(100);
+		}
 	}
 	
 	private void startTimer() {
@@ -157,7 +164,7 @@ public class ChallengeArchery extends Challenge {
 				p, 
 				"Are ewe ready for this?", 
 				"Kill " + HOW_MANY_TO_HIT_TO_WIN + " Sheep.", 
-				MOVEMENT_WASD_ATTACK
+				MOVEMENT_WASD_BOW
 				);
 		
 		

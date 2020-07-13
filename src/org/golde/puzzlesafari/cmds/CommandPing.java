@@ -13,7 +13,7 @@ public class CommandPing extends PlayerCommand {
 	public void execute(Player player, String[] args) {
 		if (!(args.length == 1)) {
             int ping = ((CraftPlayer) player).getHandle().ping;
-            player.sendMessage(Main.getInstance().color("&7Your ping is: " + colorPing(ping)));
+            player.sendMessage(Main.getInstance().color("&7Your ping is: " + colorPing(ping)) + "ms");
             return;
         }
 
@@ -28,7 +28,7 @@ public class CommandPing extends PlayerCommand {
 
             int ping = ((CraftPlayer) target).getHandle().ping;
             String targetName = target.getName();
-            player.sendMessage(Main.getInstance().color("&e" + targetName + "&7's ping is " + colorPing(ping)));
+            player.sendMessage(Main.getInstance().color("&e" + targetName + "&7's ping is " + colorPing(ping)) + "ms");
             return;
         }
 	}

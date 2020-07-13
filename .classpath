@@ -7,5 +7,6 @@
 			<attribute name="javadoc_location" value="jar:file:/C:/Users/eric/Documents/Games/Minecraft/SpigotVersions/JavaDoc/paper-api-1.12.2-R0.1-20190714.184133-413-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/eric/Documents/Games/Minecraft/Servers/Puzzle Safari/plugins/ProtocolLib (4).jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

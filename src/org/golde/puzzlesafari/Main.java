@@ -3,6 +3,7 @@ package org.golde.puzzlesafari;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,11 +18,14 @@ import org.golde.puzzlesafari.challenges.NotAChallengeButINeedChallengeEventsFor
 import org.golde.puzzlesafari.challenges.archery.ChallengeArchery;
 import org.golde.puzzlesafari.challenges.basketball.ChallengeBasketball;
 import org.golde.puzzlesafari.cmds.CommandPing;
+import org.golde.puzzlesafari.cmds.admin.CommandFix;
 import org.golde.puzzlesafari.cmds.admin.CommandTest;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandDeleteWarp;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandListWarps;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandSetWarp;
 import org.golde.puzzlesafari.cmds.admin.warp.CommandWarp;
+import org.golde.puzzlesafari.eventhandler.ApplyCovidMasks;
+import org.golde.puzzlesafari.eventhandler.EventHandlerAdmin;
 import org.golde.puzzlesafari.eventhandler.EventHandlerBase;
 import org.golde.puzzlesafari.eventhandler.EventHandlerChatBegin;
 import org.golde.puzzlesafari.eventhandler.EventHandlerMiscWorldEvents;
@@ -43,6 +47,8 @@ public class Main extends JavaPlugin {
 		registerEventHandler(new NotAChallengeButINeedChallengeEventsForSpawn());
 		registerEventHandler(new EventHandlerChatBegin());
 		registerEventHandler(new EventHandlerEndCuboidChecker());
+		registerEventHandler(new EventHandlerAdmin());
+		registerEventHandler(new ApplyCovidMasks());
 		
 		
 		registerChallenge(new ChallengeMouseMaze());
@@ -68,10 +74,14 @@ public class Main extends JavaPlugin {
 		getCommand("setwarp").setExecutor(new CommandSetWarp());
 		getCommand("delwarp").setExecutor(new CommandDeleteWarp());
 		getCommand("test").setExecutor(new CommandTest());
+		getCommand("fix").setExecutor(new CommandFix());
 
 		for(EventHandlerBase fbp : eventHandlers) {
 			fbp.onInternalEnable();
 		}
+		
+		//We don't need these, and they give us toasts that confuse players!
+		Bukkit.clearRecipes();
 
 	}
 

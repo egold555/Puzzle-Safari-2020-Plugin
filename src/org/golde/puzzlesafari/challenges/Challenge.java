@@ -22,8 +22,8 @@ public abstract class Challenge extends EventHandlerBase {
 	public static final String MOVEMENT_WASD = "Use &bWASD&f to move.";
 	public static final String MOVEMENT_WASD_JUMP = "Use &bWASD&f to move, &bSpace&f to jump.";
 	public static final String MOVEMENT_WASD_ATTACK = "Use &bWASD&f to move, &bSpace&f to jump, &bLeft Click&f to attack.";
-	public static final String MOVEMENT_WASD_BOW = "Use &bWASD&f to move, &bSpace&f to jump, &bRight Click&f to draw back.";
-	public static final String MOVEMENT_WASD_ELYTRA = "Use &bWASD&f to move, &bSpace&f to deploy your wings.";
+	public static final String MOVEMENT_WASD_BOW = "Use &bWASD&f to move, &bSpace&f to jump, &bRight Click&f to draw back, release to shoot.";
+	public static final String MOVEMENT_WASD_ELYTRA = "Use your &bmouse&f to change your &bdirection / speed&f.";
 	
 	protected final void sendEnterMessage(Player p, String desc, String goal, String movement) {
 		sendEnterMessage(p, desc, goal, movement, null);
@@ -49,7 +49,7 @@ public abstract class Challenge extends EventHandlerBase {
 
 	protected final void sendFinishMessage(Player p, String pictureOf) {
 		//p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 0.8f, 0.1f);
-		p.playSound(p.getLocation(), TheGridSFX.COMPLETE_CHALLENGE, SoundCategory.AMBIENT, 1, 1);
+		p.playSound(p.getLocation(), TheGridSFX.COMPLETE_CHALLENGE, SoundCategory.AMBIENT, 10000, 1);
 		ChatUtil.sendCentredMessage(p, "&c&m" + StringUtils.repeat(" ", 80));
 
 		ChatUtil.sendCentredMessage(p, "&e&l" + getTitle());
