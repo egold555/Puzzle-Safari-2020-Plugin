@@ -107,7 +107,7 @@ public class ChallengeMouseMaze extends Challenge {
 	@EventHandler
 	public void onPlayerMove(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
-		if(p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.CONCRETE && p.getLocation().subtract(0, 1, 0).getBlock().getRelative(BlockFace.DOWN).getType() == Material.STAINED_GLASS) {
+		if(p.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.CONCRETE && p.getLocation().subtract(0, 1, 0).getBlock().getRelative(BlockFace.DOWN).getType() == Material.COAL_BLOCK) {
 			p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 20*2, 11, true), true);
 		}
 	}

@@ -1,5 +1,8 @@
 package org.golde.puzzlesafari.eventhandler;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,6 +14,19 @@ public class EventHandlerChatBegin extends EventHandlerBase {
 
 	private static final String ERROR_MESSAGE = "&cI am sorry, but please check the event name and try again.";
 
+	private static final Set<String> ALLOWED_WARPS = new HashSet<String>();
+	static {
+		ALLOWED_WARPS.add("zombie");
+		ALLOWED_WARPS.add("parkour");
+		ALLOWED_WARPS.add("spawn");
+		ALLOWED_WARPS.add("mineshaft");
+		ALLOWED_WARPS.add("skydiving");
+		ALLOWED_WARPS.add("sheep");
+		ALLOWED_WARPS.add("basketball");
+		ALLOWED_WARPS.add("rat");
+		ALLOWED_WARPS.add("elements");
+	}
+	
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e) {
 
@@ -28,13 +44,13 @@ public class EventHandlerChatBegin extends EventHandlerBase {
 					public void run() {
 						String warp = split[1].toLowerCase();
 
-						if(warp.endsWith("end") || warp.endsWith("final") || warp.endsWith("2") || warp.endsWith("checkpoint")) {
-							p.sendMessage(color(ERROR_MESSAGE));
+						if(!ALLOWED_WARPS.contains(warp)) {
+							p.sendMessage(color(ERROR_MESSAGE + " (Error code 1)"));
 							return;
 						}
 
 						if(!WarpManager.warpExists(warp)) {
-							p.sendMessage(color(ERROR_MESSAGE));
+							p.sendMessage(color(ERROR_MESSAGE + " (Error code 2)"));
 						}
 						else {
 							WarpManager.warpPlayer(p, warp);
@@ -47,7 +63,7 @@ public class EventHandlerChatBegin extends EventHandlerBase {
 			}
 
 			else {
-				p.sendMessage(color(ERROR_MESSAGE));
+				p.sendMessage(color(ERROR_MESSAGE + " (Error code 3)"));
 			}
 
 			e.setCancelled(true);

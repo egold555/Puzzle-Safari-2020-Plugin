@@ -11,6 +11,7 @@ import org.bukkit.SoundCategory;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Husk;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.EntityEquipment;
@@ -135,7 +136,7 @@ public class ChallengeZombieKill extends Challenge {
 			@Override
 			public void run() {
 
-				if(cuboid.getEntitiesInCuboid(Zombie.class).size() < AMOUNT_OF_ZOMBIES) {
+				if((cuboid.getEntitiesInCuboid(Zombie.class).size() + cuboid.getEntitiesInCuboid(Husk.class).size()) < AMOUNT_OF_ZOMBIES) {
 					spawnAZombie();
 				}
 
@@ -157,6 +158,10 @@ public class ChallengeZombieKill extends Challenge {
 				for(Entity z : zombieKillCuboid.getEntitiesInCuboid(Zombie.class)) {
 					((Zombie)z).damage(100);
 				}
+				
+				for(Entity z : zombieKillCuboid.getEntitiesInCuboid(Husk.class)) {
+					((Husk)z).damage(100);
+				}
 
 			}
 		}.runTaskTimer(getPlugin(), 0, 1);
@@ -171,6 +176,10 @@ public class ChallengeZombieKill extends Challenge {
 				for(Entity z : cuboid.getEntitiesInCuboid(Zombie.class)) {
 					((Zombie)z).damage(100);
 				}
+				
+				for(Entity z : zombieKillCuboid.getEntitiesInCuboid(Husk.class)) {
+					((Husk)z).damage(100);
+				}
 
 			}
 		}.runTaskTimer(getPlugin(), 0, CLEAR_TICKS);
@@ -180,20 +189,33 @@ public class ChallengeZombieKill extends Challenge {
 	@SuppressWarnings("deprecation")
 	private void spawnAZombie() {
 
-		Location spawnLoc = cuboid.getRandomZombieSpawn();
-		Zombie zombie = (Zombie) cuboid.getLoc1().getWorld().spawnEntity(spawnLoc, EntityType.ZOMBIE);
-		zombie.setMaxHealth(3);
-		zombie.setHealth(zombie.getMaxHealth()); //seems to be an issue with hearts not being filled?
-		zombie.setBaby(false);
-		zombie.setCanPickupItems(false);
-		EntityEquipment ee = zombie.getEquipment();
+		if(RANDOM.nextBoolean()) {
+			Location spawnLoc = cuboid.getRandomZombieSpawn();
+			Zombie zombie = (Zombie) cuboid.getLoc1().getWorld().spawnEntity(spawnLoc, EntityType.ZOMBIE);
+			zombie.setMaxHealth(3);
+			zombie.setHealth(zombie.getMaxHealth()); //seems to be an issue with hearts not being filled?
+			zombie.setBaby(false);
+			zombie.setCanPickupItems(false);
+			EntityEquipment ee = zombie.getEquipment();
 
-		String base64 = ZOMBIE_MASKS[RANDOM.nextInt(ZOMBIE_MASKS.length)];
-		if(base64 != null) {
-			ee.setHelmet(getCustomTextureHead(base64));
+			String base64 = ZOMBIE_MASKS[RANDOM.nextInt(ZOMBIE_MASKS.length)];
+			if(base64 != null) {
+				ee.setHelmet(getCustomTextureHead(base64));
+			}
+			else {
+				ee.setHelmet(new ItemStack(Material.STONE_BUTTON)); 
+			}
 		}
 		else {
+			Location spawnLoc = cuboid.getRandomZombieSpawn();
+			Husk zombie = (Husk) cuboid.getLoc1().getWorld().spawnEntity(spawnLoc, EntityType.HUSK);
+			zombie.setMaxHealth(3);
+			zombie.setHealth(zombie.getMaxHealth()); //seems to be an issue with hearts not being filled?
+			zombie.setBaby(false);
+			zombie.setCanPickupItems(false);
+			EntityEquipment ee = zombie.getEquipment();
 			ee.setHelmet(new ItemStack(Material.STONE_BUTTON)); 
+			
 		}
 
 

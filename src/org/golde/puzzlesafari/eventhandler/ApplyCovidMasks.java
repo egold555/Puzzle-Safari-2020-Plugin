@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.io.Charsets;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 
@@ -61,7 +62,11 @@ public class ApplyCovidMasks extends EventHandlerBase{
 					else {
 						profile.getProperties().put("textures", new WrappedSignedProperty("textures", STEVE_TEXTURE[0], STEVE_TEXTURE[1]));
 					}
+					//System.out.println("ID: " + pid.getProfile().getId());
+					//System.out.println("ID: " + UUID.nameUUIDFromBytes(("OfflinePlayer:" + profile.getName()).getBytes(Charsets.UTF_8)));
+					//System.out.println("UUID: " + pid.getProfile().getUUID().toString());
 				}
+				
 			}
 		};
 		ProtocolLibrary.getProtocolManager().addPacketListener(this.adapter);
