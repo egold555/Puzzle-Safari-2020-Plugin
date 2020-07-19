@@ -7,6 +7,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockFadeEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -18,6 +19,7 @@ import org.bukkit.event.hanging.HangingBreakEvent;
 import org.bukkit.event.hanging.HangingBreakEvent.RemoveCause;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -85,9 +87,23 @@ public class EventHandlerMiscWorldEvents extends EventHandlerBase {
 							+ ChatColor.AQUA + "Server Ram: " + ((runtime.totalMemory() - runtime.freeMemory()) / MB) + "MB / " + (runtime.totalMemory() / MB) + "MB"
 							
 							);
+					
+					
 				}
 			}
 		}.runTaskTimer(Main.getInstance(), 0, 20 * 5);
+		
+//		new BukkitRunnable() {
+//			
+//			@Override
+//			public void run() {
+//				for(Player p : Bukkit.getOnlinePlayers()) {
+//					if(p.getGameMode() == GameMode.SPECTATOR) {
+//						p.sendActionBar(color("&eUse your &bScroll Wheel &eto change your speed. &b/fly&e to disable flying"));
+//					}
+//				}
+//			}
+//		}.runTaskTimer(getPlugin(), 0, 5);
 	}
 
 	//Can't take off armor
@@ -135,6 +151,15 @@ public class EventHandlerMiscWorldEvents extends EventHandlerBase {
 		}
 	}
 	
+	//Stap breaking me crops!
+	@EventHandler
+	public void noUproot(PlayerInteractEvent event)
+	{
+	    if(event.getAction() == Action.PHYSICAL && event.getClickedBlock().getType() == Material.SOIL) {
+	        event.setCancelled(true);
+	    }
+	}
+	
 	private static String format(final double tps) {
 		return ((tps > 18.0) ? ChatColor.GREEN : ((tps > 16.0) ? ChatColor.YELLOW : ChatColor.RED)).toString() + ((tps > 21.0) ? "*" : "") + Math.min(Math.round(tps * 100.0) / 100.0, 20.0);
 	}
@@ -144,7 +169,7 @@ public class EventHandlerMiscWorldEvents extends EventHandlerBase {
 		
 		final Player p = e.getPlayer();
 		final String lastWarp = WarpManager.getLastWarp(p);
-		System.out.println("Respawn loc: " + lastWarp);
+		//System.out.println("Respawn loc: " + lastWarp);
 		e.setRespawnLocation(WarpManager.getWarp(lastWarp));
 		
 		new BukkitRunnable() {

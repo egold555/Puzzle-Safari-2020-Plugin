@@ -44,6 +44,7 @@ public class NotAChallengeButINeedChallengeEventsForSpawn extends Challenge {
 		Player p = e.getPlayer();
 		reset(p);
 		WarpManager.warpPlayer(p, "spawn");
+		
 	}
 
 	@EventHandler

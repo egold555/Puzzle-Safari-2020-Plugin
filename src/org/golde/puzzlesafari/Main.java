@@ -17,6 +17,7 @@ import org.golde.puzzlesafari.challenges.ChallengeZombieKill;
 import org.golde.puzzlesafari.challenges.NotAChallengeButINeedChallengeEventsForSpawn;
 import org.golde.puzzlesafari.challenges.archery.ChallengeArchery;
 import org.golde.puzzlesafari.challenges.basketball.ChallengeBasketball;
+import org.golde.puzzlesafari.cmds.CommandFly;
 import org.golde.puzzlesafari.cmds.CommandPing;
 import org.golde.puzzlesafari.cmds.admin.CommandFix;
 import org.golde.puzzlesafari.cmds.admin.CommandTest;
@@ -75,6 +76,7 @@ public class Main extends JavaPlugin {
 		getCommand("delwarp").setExecutor(new CommandDeleteWarp());
 		getCommand("test").setExecutor(new CommandTest());
 		getCommand("fix").setExecutor(new CommandFix());
+		//getCommand("fly").setExecutor(new CommandFly());
 
 		for(EventHandlerBase fbp : eventHandlers) {
 			fbp.onInternalEnable();
