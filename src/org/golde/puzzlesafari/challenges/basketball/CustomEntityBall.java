@@ -13,6 +13,19 @@ import net.minecraft.server.v1_12_R1.PathfinderGoalSelector;
 import net.minecraft.server.v1_12_R1.SoundEffect;
 import net.minecraft.server.v1_12_R1.World;
 
+/**
+ * Ok so there is most likely a much better way of doing this, but I could not think of any other way
+ * 
+ * This class is a custom entity I register into the game to be the basketball
+ * 
+ * Its essentally a slime with no AI, silent, no loot.
+ * 
+ * Plan was to implement the physics into this class, and I also did not know if I was oging to use slimes
+ * for another challenge.
+ * 
+ * @author Eric Golde
+ *
+ */
 public class CustomEntityBall extends EntitySlime {
 
 	@SuppressWarnings("rawtypes")

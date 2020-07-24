@@ -12,6 +12,13 @@ import net.minecraft.server.v1_12_R1.PathfinderGoalRandomStrollLand;
 import net.minecraft.server.v1_12_R1.PathfinderGoalSelector;
 import net.minecraft.server.v1_12_R1.World;
 
+/**
+ * Eyy another Custom Entity!
+ * 
+ * This is for the archery game. These sheep only have the AI of running around, and run a lot faster
+ * @author Eric Golde
+ *
+ */
 public class CustomSheep extends EntitySheep {
 
 	@SuppressWarnings("rawtypes")
@@ -55,7 +62,8 @@ public class CustomSheep extends EntitySheep {
 
 	}
 
-	static Object getPrivateField(String fieldName, Class<?> clazz,
+	//Reflection stuff for private fields woo!
+	private static Object getPrivateField(String fieldName, Class<?> clazz,
 			Object object) {
 		Field field;
 		Object o = null;
@@ -71,7 +79,8 @@ public class CustomSheep extends EntitySheep {
 		return o;
 	}
 
-	<T extends Enum<?>> T randomEnum(Class<T> clazz){
+	//Gimmi a random enum based on a enum class!
+	private <T extends Enum<?>> T randomEnum(Class<T> clazz){
 		int x = random.nextInt(clazz.getEnumConstants().length);
 		return clazz.getEnumConstants()[x];
 	}

@@ -37,24 +37,36 @@ import org.golde.puzzlesafari.utils.WarpManager;
 import org.golde.puzzlesafari.utils.cuboid.Cuboid;
 import org.golde.puzzlesafari.utils.cuboid.MobCuboid;
 
+/**
+ * Basketball challenge:
+ * 		Players must throw basketballs into the hoop. 
+ * 
+ * 		Ball bouncing code was inspired, and derived from SethBlings BlingBall Plugin.
+ * 		
+ * @author Eric Golde, SethBling
+ *
+ */
 public class ChallengeBasketball extends Challenge {
 
-	private Cuboid goal;
-	private static MobCuboid playArea;
-	private static final int MAX_BALLS = 5;
-	private static final int HOW_MANY_TO_HIT_TO_WIN = 3;
-	private static final int CLEAR_TICKS = 20 * 60 * 15;
-	private static final int SPAWN_TICKS = 20;
+	private Cuboid goal; //hoop
+	private static MobCuboid playArea; //ball spawning area / player playing area
+	private static final int MAX_BALLS = 5; //How many balls should we always have in the arena?
+	private static final int HOW_MANY_TO_HIT_TO_WIN = 3; //How many goals do we need to make to win
+	private static final int CLEAR_TICKS = 20 * 60 * 15; //Every 15m, lets reset the balls just incase
+	private static final int SPAWN_TICKS = 20; //every second, lets spawn a new ball until we reach MAX_BALLS
 
 	private HashMap<UUID, Integer> playerScore = new HashMap<UUID, Integer>();
 
 	@Override
 	public void onEnable() {
+		//Register a custom basketball entity!
 		NMSUtils.registerEntity("custom_ball", Type.SLIME, CustomEntityBall.class, false);
 
+		//make the cuboids
 		goal = new Cuboid(new Location(getWorld(), -376, 12, -327), new Location(getWorld(), -375, 12, -323));
 		playArea = new MobCuboid(new Location(getWorld(), -327, 3, -350), new Location(getWorld(), -377, 34, -300));
 
+		//Start the timers!
 		startTimers();
 
 
@@ -62,11 +74,10 @@ public class ChallengeBasketball extends Challenge {
 	
 	// /fix command to kill and reset all entities
 	public static void ericFixCommand() {
-		for(Entity z : playArea.getEntitiesInCuboid(Slime.class)) {
-			((Slime)z).damage(100);
-		}
+		killAllBalls();
 	}
 
+	//General setup stuff for the challenges
 	@Override
 	public String getWarpTrigger() {
 		return "basketball";
@@ -77,6 +88,7 @@ public class ChallengeBasketball extends Challenge {
 		return "Basket Ball";
 	}
 	
+	//Send them a nice welcome message
 	@Override
 	public void onEnter(Player p) {
 		sendEnterMessage(p, 
@@ -85,18 +97,21 @@ public class ChallengeBasketball extends Challenge {
 				);
 	}
 
+	//When the plugin is disabled
 	@Override
 	public void onDisable() {
 		killAllBalls();
 	}
 
 	private void startTimers() {
+		
+		//Timer to make sure the basketball count always stays at MAX_BALLS
 		new BukkitRunnable() {
 
 			@Override
 			public void run() {
 
-				//not sure why this doewn't obay mob spawning rules, but that seems to be a issue with custom sheep / net.minecraft.World
+				//not sure why this doesn't obey mob spawning rules, but that seems to be a issue with custom sheep / net.minecraft.World
 				if(playArea.getEntitiesInCuboid(Player.class).size() > 0) {
 					if(playArea.getEntitiesInCuboid(Slime.class).size() < MAX_BALLS) {
 						spawnBall(playArea.getRandomSpawn(6));
@@ -108,6 +123,7 @@ public class ChallengeBasketball extends Challenge {
 
 		}.runTaskTimer(getPlugin(), 10, SPAWN_TICKS);
 
+		//Check for ball physics and to check for the goals
 		new BukkitRunnable() {
 
 			@Override
@@ -120,6 +136,7 @@ public class ChallengeBasketball extends Challenge {
 
 		}.runTaskTimer(getPlugin(), 1, 1);
 
+		//Timer to reset all the balls every CLEAR_TICKS
 		new BukkitRunnable() {
 
 			@Override
@@ -130,6 +147,7 @@ public class ChallengeBasketball extends Challenge {
 			}
 		}.runTaskTimer(getPlugin(), 0, CLEAR_TICKS);
 
+		//Update the actionbar every second
 		new BukkitRunnable() {
 
 			@Override
@@ -155,16 +173,19 @@ public class ChallengeBasketball extends Challenge {
 		}.runTaskTimer(getPlugin(), 0, 20);
 	}
 
-	private void killAllBalls() {
+	//kill all the balls
+	private static void killAllBalls() {
 		for(Entity z : playArea.getEntitiesInCuboid(Slime.class)) {
 			((Slime)z).damage(100);
 		}
 	}
 
+	//Print the actionbar message
 	private void updateActionBar(Player p) {
 		p.sendActionBar('&', "&eBaskets Made: &b" + playerScore.getOrDefault(p.getUniqueId(), 0) + "&f/&b" + HOW_MANY_TO_HIT_TO_WIN);
 	}
 
+	//Check for the goal
 	private void checkForGoals() {
 		for(Entity entity : goal.getEntitiesInCuboid(Slime.class)) {
 			Slime slime = (Slime) entity;
@@ -208,6 +229,7 @@ public class ChallengeBasketball extends Challenge {
 		}
 	}
 
+	//Right click events for debugging spawning basketballs
 	@EventHandler
 	public void ballFiring(PlayerInteractEvent e) {
 		Action a = e.getAction();
@@ -222,6 +244,7 @@ public class ChallengeBasketball extends Challenge {
 
 	}
 
+	//------------- Essentally all SethBlings Code, modified a tiny bit to work with my code--------------------------------//
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void eventRightClick(final PlayerInteractEntityEvent e) {
 		final Entity entity = e.getRightClicked();

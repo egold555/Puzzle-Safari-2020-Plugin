@@ -31,13 +31,21 @@ import org.golde.puzzlesafari.utils.WarpManager;
 import org.golde.puzzlesafari.utils.cuboid.Cuboid;
 import org.golde.puzzlesafari.utils.cuboid.MobCuboid;
 
+/**
+ * Archery!
+ * 
+ * Your goal is to hit the sheep with arrows. The sheep run around fast
+ * 
+ * @author Eric Golde
+ *
+ */
 public class ChallengeArchery extends Challenge {
 
-	private HashMap<UUID, Integer> sheepHit = new HashMap<UUID, Integer>();
-	private static final int MAX_SHEEP = 10;
-	private static final int HOW_MANY_TO_HIT_TO_WIN = 5;
-	private static final int CLEAR_TICKS = 20 * 60 * 15;
-	private static final int SPAWN_TICKS = 20;
+	private HashMap<UUID, Integer> sheepHit = new HashMap<UUID, Integer>(); //count of sheep hit for every player UUID
+	private static final int MAX_SHEEP = 10; //max sheep total in the arena
+	private static final int HOW_MANY_TO_HIT_TO_WIN = 5; //how many sheep you need to hit to win
+	private static final int CLEAR_TICKS = 20 * 60 * 15; //Every 15m we clear the sheep. In ticks!
+	private static final int SPAWN_TICKS = 20; //Spawns a sheep every second (In ticks)
 	
 	private Cuboid playerArea;
 	private static MobCuboid sheepArea;
